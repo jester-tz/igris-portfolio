@@ -255,16 +255,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 </footer>
 
 <script>
-document.getElementById('year').textContent = new Date().getFullYear();
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-},{threshold:.15});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</main>
 
+<!-- EmailJS Script -->
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <script>
-emailjs.init("ervCEUssnio-d1SHO"); ervCEUssnio-d1SHO
+emailjs.init("ervCEUssnio-d1SHO");
 
 const form = document.getElementById('contactForm');
 const formNote = document.getElementById('formNote');
@@ -276,7 +273,7 @@ form.addEventListener('submit', function(e){
   submitBtn.disabled = true;
   submitBtn.textContent = 'Sending...';
 
-  emailjs.send("service_8i4mqn8", "template_395db8e", {
+  emailjs.send("service_8i4mqn8", "YOUR_TEMPLATE_ID", {
     name: document.getElementById('name').value,
     email: document.getElementById('email').value,
     project: document.getElementById('type').value,
@@ -284,16 +281,19 @@ form.addEventListener('submit', function(e){
   })
   .then(() => {
     form.reset();
-    formNote.textContent = "✅ Message sent! I'll reply soon.";
+    formNote.textContent = "✅ Message sent!";
     submitBtn.textContent = 'Sent ✓';
   })
-  .catch((err) => {
-    formNote.textContent = "❌ Failed to send. Try again.";
+  .catch(() => {
+    formNote.textContent = "❌ Failed.";
     submitBtn.disabled = false;
     submitBtn.textContent = 'Send message →';
-    console.error(err);
+  });
 });
 </script>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+</body>
+</html>
+</script>
 </body>
 </html>
