@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — igrisportfolio</title>
+<meta name="description" content="Let's build something that ships. Video editing, thumbnails, e-commerce builds, and AI-integrated content automation.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <nav class="nav">
+    <a class="brand" href="index.html">igrisportfolio</a>
+    <div class="nav-links">
+      <a href="index.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="videos.html">Videos</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero" style="padding-bottom:56px;">
+    <div class="wrap">
+      <p class="hero-tag">Igris — Studio</p>
+      <h1 class="display">Let's build<br>something that <span>ships.</span></h1>
+      <p class="lede">Video editing, thumbnails, e‑commerce builds, and AI‑integrated content automation — tell me what you're working on and I'll reply within one business day.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <p class="eyebrow">Reach me</p>
+        <table>
+          <tr><td>Email</td><td>igris3048@gmail.com</td></tr>
+          <tr><td>Discord</td><td>igris.editor</td></tr>
+          <tr><td>Based</td><td>Remote — worldwide</td></tr>
+        </table>
+        <div class="tagset">
+          <span class="tag">Video Editing</span>
+          <span class="tag">Thumbnail Design</span>
+          <span class="tag">Web / E‑commerce</span>
+          <span class="tag">AI Automation</span>
+        </div>
+        <div class="reach-links">
+          <a href="mailto:igris3048@gmail.com">Email</a>
+          <a href="https://api.whatsapp.com/send/?phone=919429633778&text&type=phone_number&app_absent=0&wame_ctl=1" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Send a message</p>
+        <form class="contact-form" id="contactForm">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required>
+          </div>
+          <div>
+            <label for="type">Project type</label>
+            <select id="type" name="type">
+              <option>Video editing</option>
+              <option>Thumbnail / graphic design</option>
+              <option>Website / e-commerce build</option>
+              <option>AI content automation</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send message →</button>
+          <p class="note">This opens your email client addressed to igris3048@gmail.com with your message pre‑filled — see the README for how to wire this up to a real form backend (e.g. Formspree) if you'd rather it send without leaving the page.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap footer-row">
+    <div class="footer-nav">
+      <a href="index.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="videos.html">Videos</a>
+    </div>
+    <p class="copy">© <span id="year"></span> igrisportfolio — built &amp; hosted on GitHub Pages</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const type = document.getElementById('type').value;
+  const message = document.getElementById('message').value;
+  const subject = encodeURIComponent('Project inquiry: ' + type);
+  const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nProject type: ' + type + '\n\n' + message);
+  window.location.href = 'mailto:igris3048@gmail.com?subject=' + subject + '&body=' + body;
+});
+</script>
+</body>
+</html>
