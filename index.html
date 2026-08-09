@@ -47,7 +47,48 @@ h1.display span{color:var(--accent);}
 .btn:hover{background:transparent;color:var(--text);transform:translateY(-2px);}
 .btn.ghost{background:transparent;color:var(--text);border-color:var(--line);}
 .btn.ghost:hover{border-color:var(--accent);color:var(--accent);}
-.hero-shot{margin:52px auto 0;border:1px solid var(--line);max-width:340px;width:100%;display:block;}
+
+/* ---- traveling glow: SVG outline dash, traces the button's straight edges and corners exactly ---- */
+.btn-glow-wrap{position:relative;display:inline-block;}
+.btn-glow-svg{position:absolute;inset:-6px;width:calc(100% + 12px);height:calc(100% + 12px);pointer-events:none;overflow:visible;}
+.btn-glow-svg rect{
+  fill:none;
+  stroke:var(--accent);
+  stroke-width:1.5;
+  stroke-linecap:round;
+  vector-effect:non-scaling-stroke;
+  stroke-dasharray:10 50;
+  filter:drop-shadow(0 0 5px rgba(139,92,246,.9)) drop-shadow(0 0 11px rgba(139,92,246,.55));
+  animation:btnGlowDash 5.2s linear infinite;
+}
+@keyframes btnGlowDash{
+  from{ stroke-dashoffset:-20; }
+  to{ stroke-dashoffset:-120; }
+}
+@media (prefers-reduced-motion:reduce){
+  .btn-glow-svg rect{animation:none;}
+}
+.hero-shot{margin:52px auto 0;border:1px solid var(--line);max-width:340px;width:100%;display:block;position:relative;animation:heroFloat 6s ease-in-out infinite;}
+.hero-shot-wrap{position:relative;max-width:340px;margin:52px auto 0;}
+.hero-shot-wrap::before{
+  content:"";
+  position:absolute;
+  left:50%;top:50%;
+  width:78%;height:78%;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle, rgba(139,92,246,.55) 0%, rgba(139,92,246,0) 70%);
+  filter:blur(22px);
+  animation:heroGlowPulse 4.5s ease-in-out infinite;
+  z-index:0;
+  pointer-events:none;
+}
+.hero-shot-wrap .hero-shot{margin-top:0;position:relative;z-index:1;}
+@keyframes heroFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+@keyframes heroGlowPulse{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(.9);}50%{opacity:.95;transform:translate(-50%,-50%) scale(1.08);}}
+@media (prefers-reduced-motion:reduce){
+  .hero-shot{animation:none;}
+  .hero-shot-wrap::before{animation:none;}
+}
 
 /* entrance animation */
 .rise{opacity:0;transform:translateY(18px);animation:riseIn .7s cubic-bezier(.16,1,.3,1) forwards;}
@@ -125,16 +166,49 @@ h2.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,5vw,52
 .ww-row p{margin:0;color:var(--muted);font-size:14px;}
 
 /* ---- Web-Work: pointer tilt + light-sheen cards ---- */
-.ww-tilt{position:relative;border:1px solid var(--line);border-radius:4px;aspect-ratio:16/10;overflow:hidden;perspective:700px;opacity:0;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);}
+.ww-tilt{position:relative;border:1px solid var(--line);border-radius:4px;aspect-ratio:4/5;overflow:hidden;perspective:700px;opacity:0;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);cursor:zoom-in;}
 .ww-row.anim-left .ww-tilt{transform:translateX(-48px);}
 .ww-row.anim-right .ww-tilt{transform:translateX(48px);}
 .ww-row.in .ww-tilt{opacity:1;transform:translateX(0);}
-.ww-tilt img{width:100%;height:100%;object-fit:cover;display:block;transform:rotateX(0) rotateY(0) scale(1);transition:transform .5s cubic-bezier(.16,1,.3,1);will-change:transform;}
+.ww-tilt img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transform:rotateX(0) rotateY(0) scale(1);transition:transform .5s cubic-bezier(.16,1,.3,1);will-change:transform;}
 .ww-tilt.is-tilting img{transition:transform .06s linear;}
 .ww-tilt::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.32),transparent 55%);opacity:0;transition:opacity .35s;mix-blend-mode:overlay;pointer-events:none;}
 .ww-tilt:hover::after{opacity:1;}
 @media (hover:none){
   .ww-tilt::after{display:none;}
+}
+
+/* ---- full-view lightbox ---- */
+.lightbox{
+  position:fixed;inset:0;z-index:1000;
+  display:none;align-items:center;justify-content:center;
+  padding:32px 20px;
+  background:rgba(6,6,8,.92);
+  backdrop-filter:blur(8px);
+  animation:lbFade .2s ease-out;
+}
+.lightbox.open{display:flex;}
+.lightbox img{
+  max-width:min(92vw,720px);max-height:88vh;width:auto;height:auto;
+  border:1px solid var(--line);border-radius:6px;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.85);
+  animation:lbIn .32s cubic-bezier(.16,1,.3,1);
+}
+.lightbox-close{
+  position:absolute;top:18px;right:18px;z-index:1001;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(20,20,23,.85);border:1px solid var(--line);color:var(--text);
+  font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:border-color .2s,color .2s;
+}
+.lightbox-close:hover{border-color:var(--accent);color:var(--accent);}
+@keyframes lbFade{from{opacity:0;}to{opacity:1;}}
+@keyframes lbIn{from{opacity:0;transform:scale(.94);}to{opacity:1;transform:scale(1);}}
+@media (prefers-reduced-motion:reduce){
+  .lightbox, .lightbox img{animation:none;}
+}
+@media (max-width:560px){
+  .lightbox-close{top:12px;right:12px;width:38px;height:38px;font-size:20px;}
 }
 
 .statblock{border:1px solid var(--line);background:var(--surface);font-family:'JetBrains Mono',monospace;font-size:13.5px;}
@@ -219,8 +293,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <p class="hero-tag rise d1">Design · Video Editing · Web Development</p>
       <h1 class="display rise d2">Work built for brands<br>that live <span>online.</span></h1>
       <p class="lede rise d3">Thumbnails and ad creatives that stop the scroll, edits that hold attention, and e‑commerce sites that actually convert.</p>
-      <div class="rise d4" style="text-align:center;"><a class="btn" href="contact.html">Get in touch →</a></div>
-      <img class="hero-shot rise d5" src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/file_00000000602471fb80e0082a41bd5ff08805008955864385915.png" alt="Igris portfolio hero artwork">
+      <div class="rise d4" style="text-align:center;">
+        <span class="btn-glow-wrap">
+          <a class="btn" href="contact.html">Get in touch →</a>
+          <svg class="btn-glow-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <rect x="1" y="1" width="98" height="98" pathLength="100"></rect>
+          </svg>
+        </span>
+      </div>
+      <div class="hero-shot-wrap rise d5"><img class="hero-shot" src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/file_00000000602471fb80e0082a41bd5ff08805008955864385915.png" alt="Igris portfolio hero artwork"></div>
     </div>
   </section>
 
@@ -252,7 +333,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <button type="button" class="cf-nav cf-prev" aria-label="Previous">‹</button>
         <button type="button" class="cf-nav cf-next" aria-label="Next">›</button>
       </div>
-      <span class="badge reveal">based globally</span>
+      <span class="badge reveal">based in India</span>
     </div>
   </section>
 
@@ -368,6 +449,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <p class="copy"> Copyright © <span id="year"></span> · Created by igris</p>
   </div>
 </footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Full-size preview">
+  <button type="button" class="lightbox-close" id="lbClose" aria-label="Close preview">&times;</button>
+  <img id="lbImg" src="" alt="">
+</div>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
@@ -503,6 +589,35 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       img.style.transform = 'rotateX(0) rotateY(0) scale(1)';
     });
   });
+})();
+/* Web-Work: click/tap any preview to open it full-size */
+(function(){
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbClose = document.getElementById('lbClose');
+  if(!lightbox) return;
+
+  function openLB(src, alt){
+    lbImg.src = src;
+    lbImg.alt = alt || '';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLB(){
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.ww-tilt').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const img = el.querySelector('img');
+      openLB(img.src, img.alt);
+    });
+  });
+
+  lbClose.addEventListener('click', closeLB);
+  lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLB(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLB(); });
 })();
 </script>
 </body>
