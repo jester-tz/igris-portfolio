@@ -235,6 +235,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
             <textarea id="message" name="message" required></textarea>
           </div>
           <button type="submit" class="btn">Send message →</button>
+          <p class="note" id="formNote">Submissions go straight to your inbox — no email app needed on your end.</p>
         </form>
       </div>
     </div>
@@ -268,7 +269,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
    "https://formspree.io/f/xxxxabcd"
    Full walkthrough is in the README.
 ------------------------------------------------------------------------ */
-const FORM_ENDPOINT = "";
+const FORM_ENDPOINT = "https://formspree.io/f/mbgrdvoj";
 
 const form = document.getElementById('contactForm');
 const formNote = document.getElementById('formNote');
