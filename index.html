@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Igris —</title>
+<title>Igris</title>
 <meta name="description" content="Design · Video Editing · Web Development — visual and digital work for brands that live online.">
 <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/bebas-neue/1.0.0/bebas-neue.min.css');
@@ -73,6 +73,26 @@ h2.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,5vw,52
 .card:hover{border-color:var(--accent-dim);box-shadow:0 18px 40px -20px rgba(139,92,246,.45);}
 .card.showcase-anim{will-change:transform,opacity;}
 .card.showcase-anim:hover{transform:translateY(-6px) !important;}
+
+/* ---- Graphics Showcase: 3D coverflow carousel ---- */
+.cf-carousel{position:relative;margin-top:8px;}
+.cf-frame{cursor:grab;overflow:hidden;padding:44px 0;outline:none;touch-action:pan-y;perspective:calc(var(--cf-card) * 2.6);}
+.cf-frame:active{cursor:grabbing;}
+.cf-frame:focus-visible{outline:2px solid var(--accent);outline-offset:4px;}
+.cf-track{position:relative;height:var(--cf-card);transform-style:preserve-3d;}
+.cf-card{position:absolute;left:50%;top:0;width:var(--cf-card);aspect-ratio:1/1;overflow:hidden;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:0 24px 48px -24px rgba(0,0,0,.7);will-change:transform,opacity;}
+.cf-card img{width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none;}
+.cf-cap{position:absolute;left:0;right:0;bottom:0;padding:14px 16px 12px;background:linear-gradient(to top,rgba(10,10,12,.92),rgba(10,10,12,0));opacity:0;transition:opacity .25s;}
+.cf-card.cf-active .cf-cap{opacity:1;}
+.cf-cap h3{margin:0 0 2px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#fff;}
+.cf-cap p{margin:0;font-size:12px;color:var(--muted);}
+.cf-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:200;width:42px;height:42px;border-radius:50%;background:rgba(20,20,23,.75);border:1px solid var(--line);color:var(--text);display:flex;align-items:center;justify-content:center;font-size:20px;line-height:1;backdrop-filter:blur(6px);transition:border-color .2s,color .2s;}
+.cf-nav:hover{border-color:var(--accent);color:var(--accent);}
+.cf-prev{left:0;}
+.cf-next{right:0;}
+@media (max-width:560px){
+  .cf-nav{width:36px;height:36px;font-size:17px;}
+}
 .card img{aspect-ratio:4/5;object-fit:cover;filter:grayscale(.15);transition:filter .3s,transform .5s cubic-bezier(.16,1,.3,1);}
 .card:hover img{filter:grayscale(0);transform:scale(1.06);}
 .card-body{padding:16px 18px;}
@@ -101,13 +121,21 @@ h2.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,5vw,52
 .web-work{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);}
 .ww-row{display:grid;grid-template-columns:220px 1fr;gap:24px;background:var(--bg);padding:20px 22px;align-items:center;transition:background .25s;}
 .ww-row:hover{background:var(--surface);}
-.ww-row img{border:1px solid var(--line);aspect-ratio:16/10;object-fit:cover;opacity:0;transition:transform .6s cubic-bezier(.16,1,.3,1),opacity .6s cubic-bezier(.16,1,.3,1);}
-.ww-row.anim-left img{transform:translateX(-48px);}
-.ww-row.anim-right img{transform:translateX(48px);}
-.ww-row.in img{opacity:1;transform:translateX(0);}
-.ww-row:hover img{transform:scale(1.05) !important;}
 .ww-row h3{font-family:'Inter',sans-serif;font-size:18px;font-weight:600;margin:0 0 6px;}
 .ww-row p{margin:0;color:var(--muted);font-size:14px;}
+
+/* ---- Web-Work: pointer tilt + light-sheen cards ---- */
+.ww-tilt{position:relative;border:1px solid var(--line);border-radius:4px;aspect-ratio:16/10;overflow:hidden;perspective:700px;opacity:0;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);}
+.ww-row.anim-left .ww-tilt{transform:translateX(-48px);}
+.ww-row.anim-right .ww-tilt{transform:translateX(48px);}
+.ww-row.in .ww-tilt{opacity:1;transform:translateX(0);}
+.ww-tilt img{width:100%;height:100%;object-fit:cover;display:block;transform:rotateX(0) rotateY(0) scale(1);transition:transform .5s cubic-bezier(.16,1,.3,1);will-change:transform;}
+.ww-tilt.is-tilting img{transition:transform .06s linear;}
+.ww-tilt::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.32),transparent 55%);opacity:0;transition:opacity .35s;mix-blend-mode:overlay;pointer-events:none;}
+.ww-tilt:hover::after{opacity:1;}
+@media (hover:none){
+  .ww-tilt::after{display:none;}
+}
 
 .statblock{border:1px solid var(--line);background:var(--surface);font-family:'JetBrains Mono',monospace;font-size:13.5px;}
 .statblock .row{display:flex;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);}
@@ -200,25 +228,31 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <div class="wrap">
       <p class="eyebrow reveal">Graphics — Showcase</p>
       <h2 class="section-title reveal">A run of product ad concepts</h2>
-      <div class="grid">
-        <article class="card showcase-anim">
-          <img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/14e1b04d2f6a3bd6d409f85a1ad08164.jpg" alt="Fresh Sprite beverage ad composite">
-          <div class="card-body"><h3>Fresh Sprite</h3><p>Beverage ad concept — citrus composite</p></div>
-        </article>
-        <article class="card showcase-anim">
-          <img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/img_20260711_192819.jpg" alt="Super Delicious Burger ad">
-          <div class="card-body"><h3>Super Delicious Burger</h3><p>Food ad concept — delivery app promo</p></div>
-        </article>
-        <article class="card showcase-anim">
-          <img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/25caa6d486e6367011b1bb79af252bb1.jpg" alt="Blurberry Energy studio product shot">
-          <div class="card-body"><h3>Blurberry Energy</h3><p>Beverage ad concept — studio product shot</p></div>
-        </article>
-        <article class="card showcase-anim">
-          <img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/5bae8d41f11046ac28f44737ace68b3f.jpg" alt="Chocolatier Café menu promo">
-          <div class="card-body"><h3>Chocolatier Café</h3><p>Menu promo — chocolate shake feature</p></div>
-        </article>
+      <div class="cf-carousel" id="showcaseCarousel" style="--cf-card: clamp(170px, 30vw, 300px);">
+        <div class="cf-frame" id="cfFrame" tabindex="0" aria-label="Graphics showcase, use arrow keys or drag to browse">
+          <div class="cf-track">
+            <div class="cf-card">
+              <img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/14e1b04d2f6a3bd6d409f85a1ad08164.jpg" alt="Fresh Sprite beverage ad composite" draggable="false">
+              <div class="cf-cap"><h3>Fresh Sprite</h3><p>Beverage ad concept</p></div>
+            </div>
+            <div class="cf-card">
+              <img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/img_20260711_192819.jpg" alt="Super Delicious Burger ad" draggable="false">
+              <div class="cf-cap"><h3>Super Delicious Burger</h3><p>Food ad / delivery promo</p></div>
+            </div>
+            <div class="cf-card">
+              <img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/25caa6d486e6367011b1bb79af252bb1.jpg" alt="Blurberry Energy studio product shot" draggable="false">
+              <div class="cf-cap"><h3>Blurberry Energy</h3><p>Studio product shot</p></div>
+            </div>
+            <div class="cf-card">
+              <img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/5bae8d41f11046ac28f44737ace68b3f.jpg" alt="Chocolatier Café menu promo" draggable="false">
+              <div class="cf-cap"><h3>Chocolatier Café</h3><p>Menu promo</p></div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="cf-nav cf-prev" aria-label="Previous">‹</button>
+        <button type="button" class="cf-nav cf-next" aria-label="Next">›</button>
       </div>
-      <span class="badge reveal">based in Worldwide</span>
+      <span class="badge reveal">based globally</span>
     </div>
   </section>
 
@@ -294,27 +328,27 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <h2 class="section-title reveal">Web‑Work</h2>
       <div class="web-work reveal-stagger">
         <div class="ww-row reveal anim-left">
-          <img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/229420c1ee2ed7aaa43f7d7cdcc6c2c41235414803979392907.jpg" alt="Coco Home landing page">
+          <div class="ww-tilt"><img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/229420c1ee2ed7aaa43f7d7cdcc6c2c41235414803979392907.jpg" alt="Coco Home landing page"></div>
           <div><h3>Coco Home</h3><p>Interior &amp; furniture e‑commerce landing page</p></div>
         </div>
         <div class="ww-row reveal anim-right">
-          <img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/8f17c9af4659fe2b9bae85230bf6646b2719948213916446333.jpg" alt="Wink product listing page">
+          <div class="ww-tilt"><img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/8f17c9af4659fe2b9bae85230bf6646b2719948213916446333.jpg" alt="Wink product listing page"></div>
           <div><h3>Wink</h3><p>Streetwear e‑commerce, product listing page</p></div>
         </div>
         <div class="ww-row reveal anim-left">
-          <img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/9733bd1fd46cb61c3abe1df818e973152218839231100532612.jpg" alt="Astro product page">
+          <div class="ww-tilt"><img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/9733bd1fd46cb61c3abe1df818e973152218839231100532612.jpg" alt="Astro product page"></div>
           <div><h3>Astro</h3><p>Techwear product page, dark theme</p></div>
         </div>
         <div class="ww-row reveal anim-right">
-          <img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/20af25fe5a57c7a623545dbf232bcf71966685710133682271.jpg" alt="NovaTrend homepage">
+          <div class="ww-tilt"><img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/20af25fe5a57c7a623545dbf232bcf71966685710133682271.jpg" alt="NovaTrend homepage"></div>
           <div><h3>NovaTrend</h3><p>General e‑commerce homepage</p></div>
         </div>
         <div class="ww-row reveal anim-left">
-          <img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/48c693688f607a62c915b37b7f6716117741348530672109515.jpg" alt="Hush restaurant site">
+          <div class="ww-tilt"><img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/48c693688f607a62c915b37b7f6716117741348530672109515.jpg" alt="Hush restaurant site"></div>
           <div><h3>Hush</h3><p>Modern restaurant &amp; sushi site</p></div>
         </div>
         <div class="ww-row reveal anim-right">
-          <img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/9bdf84e6cd5a0b42760ac2d7327ea2ff8549497147939924842.jpg" alt="Stuffus electronics shop page">
+          <div class="ww-tilt"><img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/9bdf84e6cd5a0b42760ac2d7327ea2ff8549497147939924842.jpg" alt="Stuffus electronics shop page"></div>
           <div><h3>Stuffus</h3><p>Electronics &amp; gadgets shop page</p></div>
         </div>
       </div>
@@ -331,7 +365,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <a href="contact.html">Contact</a>
       <a href="videos.html">Videos</a>
     </div>
-    <p class="copy">© <span id="year"></span> igris</p>
+    <p class="copy"> Copyright © <span id="year"></span> · Created by igris</p>
   </div>
 </footer>
 
@@ -343,22 +377,133 @@ const io = new IntersectionObserver((entries)=>{
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* Graphics — Showcase: cards drift in from the right and exit to the left as you scroll */
-const showcaseCards = document.querySelectorAll('.showcase-anim');
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-function updateShowcase(){
-  if(reduceMotion || !showcaseCards.length) return;
-  const vh = window.innerHeight;
-  showcaseCards.forEach(el=>{
-    const rect = el.getBoundingClientRect();
-    const center = rect.top + rect.height/2;
-    const progress = Math.max(-1, Math.min(1, (center - vh/2) / (vh/2)));
-    el.style.transform = 'translateX(' + (progress*70) + 'px)';
-    el.style.opacity = String(1 - Math.abs(progress)*0.5);
+/* Graphics — Showcase: 3D coverflow carousel — drag, arrows, or arrow keys */
+(function(){
+  const root = document.getElementById('showcaseCarousel');
+  if(!root) return;
+  const frame = document.getElementById('cfFrame');
+  const cards = Array.from(root.querySelectorAll('.cf-card'));
+  const count = cards.length;
+  const prevBtn = root.querySelector('.cf-prev');
+  const nextBtn = root.querySelector('.cf-next');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const ROTATE = 44, DEPTH = 0.55, FALLOFF = 0.56, FADE = 0.14, GAP = 0.1, LOOP = true;
+
+  let pos = 0, target = 0, width = 0, raf = null, drag = null;
+
+  function indexAt(p){ return ((Math.round(p) % count) + count) % count; }
+
+  function paint(){
+    if(!width) return;
+    const pitch = width * (1 + GAP);
+    cards.forEach((card, i)=>{
+      let offset = i - pos;
+      if(LOOP){
+        offset = ((offset % count) + count) % count;
+        if(offset > count / 2) offset -= count;
+      }
+      const distance = Math.abs(offset);
+      const ramp = Math.pow(distance, FALLOFF);
+      const tilt = Math.min(ROTATE * ramp, 82) * Math.sign(offset);
+      card.style.transform =
+        'translateX(calc(-50% + ' + (offset * pitch) + 'px)) ' +
+        'translateZ(' + (-DEPTH * width * ramp) + 'px) rotateY(' + (-tilt) + 'deg)';
+      const edge = LOOP ? Math.min(1, Math.max(0, count / 2 - distance)) : 1;
+      card.style.opacity = String(Math.max(0, 1 - FADE * distance) * edge);
+      card.style.zIndex = String(100 - Math.round(distance));
+      card.classList.toggle('cf-active', distance < 0.5);
+    });
+  }
+
+  function settle(t){
+    if(raf !== null) cancelAnimationFrame(raf);
+    target = t;
+    const step = ()=>{
+      const remaining = target - pos;
+      if(reduceMotion || Math.abs(remaining) < 0.0004){
+        pos = target; paint(); raf = null; return;
+      }
+      pos += remaining * 0.16;
+      paint();
+      raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+  }
+
+  function clamp(p){ return LOOP ? p : Math.max(0, Math.min(count - 1, p)); }
+  function nudge(by){ settle(clamp(Math.round(target) + by)); }
+
+  function measure(){
+    width = cards[0].offsetWidth;
+    paint();
+  }
+  measure();
+  window.addEventListener('resize', measure);
+
+  prevBtn.addEventListener('click', ()=>nudge(-1));
+  nextBtn.addEventListener('click', ()=>nudge(1));
+
+  frame.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowLeft'){ e.preventDefault(); nudge(-1); }
+    else if(e.key === 'ArrowRight'){ e.preventDefault(); nudge(1); }
   });
-}
-window.addEventListener('scroll', ()=>requestAnimationFrame(updateShowcase), {passive:true});
-window.addEventListener('resize', updateShowcase);
-updateShowcase();
+
+  frame.addEventListener('pointerdown', (e)=>{
+    if(raf !== null){ cancelAnimationFrame(raf); raf = null; }
+    frame.setPointerCapture(e.pointerId);
+    target = pos;
+    drag = { id: e.pointerId, x: e.clientX, pos: pos, v: 0, t: performance.now() };
+  });
+  frame.addEventListener('pointermove', (e)=>{
+    if(!drag || drag.id !== e.pointerId) return;
+    const pitch = width * (1 + GAP);
+    if(!pitch) return;
+    const now = performance.now();
+    const prevPos = pos;
+    pos = clamp(drag.pos - (e.clientX - drag.x) / pitch);
+    drag.v = ((pos - prevPos) / Math.max(now - drag.t, 1)) * 1000;
+    drag.t = now;
+    paint();
+  });
+  function endDrag(e){
+    if(!drag || drag.id !== e.pointerId) return;
+    const carried = Math.max(-2, Math.min(2, drag.v * 0.18));
+    drag = null;
+    settle(clamp(Math.round(pos + carried)));
+  }
+  frame.addEventListener('pointerup', endDrag);
+  frame.addEventListener('pointercancel', endDrag);
+})();
+/* Web-Work: pointer-tracking 3D tilt + light sheen */
+(function(){
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canHover = window.matchMedia('(hover: hover)').matches;
+  if(reduceMotion || !canHover) return;
+
+  document.querySelectorAll('.ww-tilt').forEach(el=>{
+    const img = el.querySelector('img');
+    const MAX = 10; // degrees
+
+    el.addEventListener('pointerenter', ()=> el.classList.add('is-tilting'));
+
+    el.addEventListener('pointermove', (e)=>{
+      const rect = el.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;   // 0..1
+      const y = (e.clientY - rect.top) / rect.height;   // 0..1
+      const rotY = (x - 0.5) * MAX * 2;
+      const rotX = (0.5 - y) * MAX * 2;
+      img.style.transform = 'rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) scale(1.05)';
+      el.style.setProperty('--mx', (x * 100) + '%');
+      el.style.setProperty('--my', (y * 100) + '%');
+    });
+
+    el.addEventListener('pointerleave', ()=>{
+      el.classList.remove('is-tilting');
+      img.style.transform = 'rotateX(0) rotateY(0) scale(1)';
+    });
+  });
+})();
 </script>
 </body>
 </html>
