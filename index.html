@@ -258,8 +258,18 @@ footer.site{padding:40px 0;position:relative;z-index:1;}
 }
 @media (max-width:560px){
   .grid{grid-template-columns:1fr;}
-  .nav-links{gap:16px;font-size:11.5px;}
-  .stripe{flex-direction:column;align-items:flex-start;gap:14px;}
+
+  .nav-links{
+    gap:24px;
+    font-size:11.5px;
+    white-space:nowrap;
+  }
+
+  .stripe{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:14px;
+  }
 }
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
 @media (prefers-reduced-motion:reduce){
