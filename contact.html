@@ -820,5 +820,9 @@ form.addEventListener('submit', async function(e){
   }
 });
 </script>
+<script src="igris-auth.js"></script>
+<script id="igris-contact-handler">
+(async()=>{const sb=supabase.createClient("https://kjimyrewcnbpwzmoxxpv.supabase.co","sb_publishable_ZVinjwmrApsFIt6YQ6Vb_w_DsrQPSYo");const form=document.querySelector("form");if(!form)return;form.addEventListener("submit",async e=>{e.preventDefault();const fd=new FormData(form),r=await sb.auth.getUser(),fields=Object.fromEntries(fd.entries()),user=r.data.user;const message=Object.entries(fields).filter(x=>String(x[1]).trim()).map(x=>x[0]+": "+x[1]).join("\n");const subject=fields.subject||fields.project||fields.name||"Website inquiry";const q=await sb.from("messages").insert({user_id:user?.id||null,subject,message});let box=form.querySelector("[data-status]");if(!box){box=document.createElement("div");box.setAttribute("data-status","");box.style.marginTop="12px";form.appendChild(box)}box.textContent=q.error?"Could not send message: "+q.error.message:"Message sent successfully — thank you!";if(!q.error)form.reset()})})();
+</script>
 </body>
 </html>

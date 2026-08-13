@@ -1948,6 +1948,7 @@ button:active, .btn:active, a[class*="button"]:active, .button:active {
             });
         });
     </script>
+<script src="igris-auth.js"></script>
 </body>
 -->
 <style>
@@ -3779,6 +3780,7 @@ button:active, .btn:active, a[class*="button"]:active, .button:active {
 
         document.querySelectorAll('.stats-grid, .fleet-stats').forEach(el => statsObserver.observe(el));
     </script>
+<script src="igris-auth.js"></script>
 </body>
 <style>
   .igris-back-btn{
@@ -5543,6 +5545,7 @@ button:active, .btn:active, a[class*="button"]:active, .button:active {
             lazyImages.forEach(img => imageObserver.observe(img));
         }
     </script>
+<script src="igris-auth.js"></script>
 </body>
 <style>
       .igris-back-btn{
@@ -5775,7 +5778,8 @@ function openPreview(siteId){
   var html = tpl ? tpl.innerHTML.trim() : '';
   modalFrame.srcdoc = html
     ? html
-    : '<body style="font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;color:#666;">Preview coming soon.</body>';
+    : '<body style="font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;color:#666;">Preview coming soon.<script src="igris-auth.js"></script>
+</body>';
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -5802,5 +5806,6 @@ closeBtn.addEventListener('click', closePreview);
 modal.addEventListener('click', function(e){ if(e.target === modal) closePreview(); });
 document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('open')) closePreview(); });
 </script>
+<script src="igris-auth.js"></script>
 </body>
 </html>
