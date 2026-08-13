@@ -671,22 +671,6 @@ select option:checked {
       });
     });
   }
-
-  if(!reduceMotion && canHover){
-    if(glow){
-      var gx=0, gy=0, cx=0, cy=0;
-      window.addEventListener('pointermove', function(e){
-        gx = e.clientX; gy = e.clientY;
-        glow.classList.add('active');
-      });
-      (function loop(){
-        cx += (gx - cx) * .12; cy += (gy - cy) * .12;
-        glow.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)';
-        requestAnimationFrame(loop);
-      })();
-    }
-  }
-
   /* ---- magnetic buttons ---- */
   if(!reduceMotion && canHover){
     document.querySelectorAll('.magnetic').forEach(function(el){

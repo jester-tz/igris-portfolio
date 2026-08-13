@@ -280,14 +280,6 @@ footer.site-footer{position:relative;z-index:1;padding:64px 0 40px;border-top:1p
 .footer-meta{display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
 
 /* ============================================================
-   CURSOR GLOW (desktop hover-capable only, via JS toggle)
-   ============================================================ */
-.cursor-glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:2;
-  background:radial-gradient(circle,rgba(255,90,46,.08),transparent 70%);
-  transform:translate(-50%,-50%);left:0;top:0;will-change:transform;transition:opacity .3s;opacity:0;}
-.cursor-glow.active{opacity:1;}
-
-/* ============================================================
    SHARED CARD PRIMITIVES
    ============================================================ */
 .tag{
@@ -467,7 +459,7 @@ button:active, .btn:active, a[class*="button"]:active, .button:active {
 </head>
 <body>
 <div class="ambient" aria-hidden="true"><div class="mesh mesh-1"></div><div class="mesh mesh-2"></div><div class="mesh mesh-3"></div></div>
-<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
@@ -619,25 +611,8 @@ button:active, .btn:active, a[class*="button"]:active, .button:active {
             transition: transform 0.15s var(--ease-out-expo);
         }
 
-        .cursor-follower {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(10,10,10,0.3);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            transition: transform 0.3s var(--ease-out-expo), width 0.3s, height 0.3s;
-        }
-
         .cursor.hover {
             transform: scale(2.5);
-        }
-
-        .cursor-follower.hover {
-            width: 60px;
-            height: 60px;
-            border-color: rgba(10,10,10,0.1);
         }
 
         /* Preloader */
@@ -1450,7 +1425,6 @@ button:active, .btn:active, a[class*="button"]:active, .button:active {
             .featured, .editorial, .newsletter { padding-left: 2rem; padding-right: 2rem; }
             nav { padding: 1rem 2rem; }
             body { cursor: auto; }
-            .cursor, .cursor-follower { display: none; }
             * { cursor: auto !important; }
         }
 
@@ -1483,7 +1457,7 @@ button:active, .btn:active, a[class*="button"]:active, .button:active {
 
     <!-- Custom Cursor -->
     <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    
 
     <!-- Preloader -->
     <div class="preloader" id="preloader">
@@ -1755,18 +1729,6 @@ button:active, .btn:active, a[class*="button"]:active, .button:active {
                     initAnimations();
                 }, 800);
             }, 1800);
-        });
-
-        // Custom Cursor
-        const cursor = document.querySelector('.cursor');
-        const follower = document.querySelector('.cursor-follower');
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-        let followerX = 0, followerY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
         });
 
         function animateCursor() {
@@ -5678,24 +5640,6 @@ button:active, .btn:active, a[class*="button"]:active, .button:active {
       });
     });
   }
-
-  /* ---- cursor glow ---- */
-  if(!reduceMotion && canHover){
-    var glow = document.getElementById('cursorGlow');
-    if(glow){
-      var gx=0, gy=0, cx=0, cy=0;
-      window.addEventListener('pointermove', function(e){
-        gx = e.clientX; gy = e.clientY;
-        glow.classList.add('active');
-      });
-      (function loop(){
-        cx += (gx - cx) * .12; cy += (gy - cy) * .12;
-        glow.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)';
-        requestAnimationFrame(loop);
-      })();
-    }
-  }
-
   /* ---- magnetic buttons ---- */
   if(!reduceMotion && canHover){
     document.querySelectorAll('.magnetic').forEach(function(el){
