@@ -1,10 +1,54 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Igris — Design, video & web</title><meta name="description" content="Igris is an independent designer and maker working across visual design, video and websites."><link rel="stylesheet" href="styles.css"></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Igris — Design, video & web</title><meta name="description" content="Igris is an independent designer and maker working across visual design, video and websites."><link rel="stylesheet" href="styles.css">
+<style id="igris-gallery-css">
+.igris-gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.igris-gallery-card{position:relative;overflow:hidden;min-height:420px;border:1px solid rgba(0,0,0,.10);border-radius:24px;background:rgba(255,255,255,.48);transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+[data-theme="dark"] .igris-gallery-card{border-color:rgba(255,255,255,.11);background:rgba(255,255,255,.035)}
+.igris-gallery-card:hover{transform:translateY(-4px);box-shadow:0 22px 60px rgba(0,0,0,.10)}
+[data-theme="dark"] .igris-gallery-card:hover{box-shadow:0 22px 60px rgba(0,0,0,.35)}
+.igris-gallery-card.wide{grid-column:span 7}.igris-gallery-card.narrow{grid-column:span 5}
+.igris-gallery-media{height:420px;overflow:hidden;position:relative;background:#eee}
+[data-theme="dark"] .igris-gallery-media{background:#151217}
+.igris-gallery-media img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1);cursor:zoom-in}
+.igris-gallery-card:hover .igris-gallery-media img{transform:scale(1.035)}
+.igris-gallery-overlay{position:absolute;inset:auto 0 0;padding:58px 22px 20px;background:linear-gradient(transparent,rgba(0,0,0,.82));color:#fff;pointer-events:none}
+.igris-gallery-kicker{font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.68;margin-bottom:7px}
+.igris-gallery-title{font-size:22px;font-weight:650;letter-spacing:-.03em}
+.igris-gallery-action{position:absolute;right:16px;top:16px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.2);font-size:17px;backdrop-filter:blur(12px);pointer-events:none}
+.igris-gallery-note{margin-top:9px;font-size:11px;opacity:.58}
+#igris-lightbox{position:fixed;inset:0;z-index:2147483647;display:none;align-items:center;justify-content:center;padding:32px;background:rgba(6,5,7,.94)}
+#igris-lightbox.open{display:flex}
+#igris-lightbox-backdrop{position:absolute;inset:0}
+#igris-lightbox-frame{position:relative;z-index:2;max-width:min(94vw,1400px);max-height:92vh;display:flex;flex-direction:column;align-items:center}
+#igris-lightbox-img{display:block;max-width:94vw;max-height:84vh;width:auto;height:auto;object-fit:contain;border-radius:8px;box-shadow:0 30px 100px rgba(0,0,0,.55)}
+#igris-lightbox-close{position:absolute;right:-10px;top:-14px;z-index:4;width:40px;height:40px;border:1px solid rgba(255,255,255,.2);border-radius:50%;background:rgba(25,22,27,.85);color:#fff;font:400 24px/38px Arial,sans-serif;cursor:pointer;backdrop-filter:blur(14px)}
+#igris-lightbox-caption{margin-top:12px;color:rgba(255,255,255,.7);font-size:12px;text-align:center}
+@media(max-width:800px){.igris-gallery{grid-template-columns:1fr}.igris-gallery-card.wide,.igris-gallery-card.narrow{grid-column:auto}.igris-gallery-media{height:360px}#igris-lightbox{padding:18px}#igris-lightbox-img{max-width:96vw;max-height:84vh}#igris-lightbox-close{right:-3px;top:-8px}}
+</style>
+</head><body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><nav class="nav" aria-label="Primary"><a class="brand" href="index.html"><span class="brand-mark"></span>igris</a><div class="nav-links"><a class="active" href="index.html">Work</a><a href="results.html">Results</a><a href="about.html">About</a><a href="videos.html">Videos</a><a href="contact.html">Contact</a></div><div class="nav-actions"><a class="btn secondary start-btn" href="contact.html">Start a project</a><button class="theme-toggle" id="themeToggle" aria-label="Switch theme">☾</button><button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">☰</button></div></nav><div class="mobile-menu" id="mobileMenu"><a href="index.html">Work</a><a href="results.html">Results</a><a href="about.html">About</a><a href="videos.html">Videos</a><a href="contact.html">Contact</a></div></header>
 <main id="main"><section class="hero"><div class="container hero-grid"><div><div class="eyebrow">Independent designer / editor / web maker</div><h1>I make things people <em>notice.</em></h1><p class="hero-copy">I design websites, edit video and build visual work for people and brands that need a clear point of view — not another template.</p><div class="actions"><a class="btn primary" href="#work">See the work <span>↓</span></a><a class="btn secondary" href="contact.html">Tell me what you're making</a></div></div><aside class="hero-note"><strong>Based online. Working worldwide.</strong><p>Design, motion and web development, handled by one person from first idea to final file.</p></aside></div></section>
-<section class="section" id="work"><div class="container"><div class="section-head"><h2>Selected work</h2><p>A mix of identity, product visuals, websites and campaign pieces. I care about the finished thing, not the size of the brief.</p></div><div class="work-grid"><a class="project large reveal" href="results.html"><img data-lightbox-img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/25caa6d486e6367011b1bb79af252bb1.jpg" alt="Blurberry Energy product artwork"><div class="project-info"><div><div class="project-title">Blurberry Energy</div><p>Product direction / campaign visual</p></div><div class="project-meta">Featured<br>01</div></div></a><div class="work-small"><a class="project reveal" href="pixelproof.html"><img data-lightbox-img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/229420c1ee2ed7aaa43f7d7cdcc6c2c41235414803979392907.jpg" alt="Coco Home website design" onerror="this.src='https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/229420c1ee2ed7aaa43f7d7cdcc6c2c41235414803979392907.jpg'"><div class="project-info"><div><div class="project-title">Coco Home</div><p>Website / ecommerce direction</p></div><div class="project-meta">Web<br>02</div></div></a><a class="project reveal" href="pixelproof.html"><img data-lightbox-img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/8f17c9af4659fe2b9bae85230bf6646b2719948213916446333.jpg" alt="Wink product listing page"><div class="project-info"><div><div class="project-title">Wink</div><p>Product interface / web design</p></div><div class="project-meta">Web<br>03</div></div></a></div></div></div></section>
-<section class="section"><div class="container editorial"><div class="editorial-copy"><div class="eyebrow">What I actually do</div><h2>Design first. Effects second.</h2><p>I use the tools that fit the job. Sometimes that means a sharp identity system. Sometimes it is a website, a thumbnail, an edit or a whole set of campaign assets.</p></div><div class="number-list"><div class="number-item reveal"><span class="num">01</span><div><h3>Websites</h3><p>Responsive sites and landing pages with clear hierarchy, useful interactions and a finish that feels considered.</p></div></div><div class="number-item reveal"><span class="num">02</span><div><h3>Video</h3><p>Short-form and longer edits, from the rough cut to motion, pacing and export.</p></div></div><div class="number-item reveal"><span class="num">03</span><div><h3>Visual design</h3><p>Thumbnails, product visuals, ads and campaign pieces made around the actual audience and platform.</p></div></div></div></div></section>
-<section class="section"><div class="container"><div class="section-head"><h2>More work</h2><p>Different formats, same approach: make the idea easy to understand and hard to ignore.</p></div><div class="gallery"><figure class="reveal"><img data-lightbox-img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/9733bd1fd46cb61c3abe1df818e973152218839231100532612.jpg" alt="Astro product page"><figcaption>Astro — product page</figcaption></figure><figure class="reveal"><img data-lightbox-img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/20af25fe5a57c7a623545dbf232bcf71966685710133682271.jpg" alt="NovaTrend homepage"><figcaption>NovaTrend — homepage</figcaption></figure><figure class="reveal"><img data-lightbox-img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/48c693688f607a62c915b37b7f6716117741348530672109515.jpg" alt="Hush restaurant website"><figcaption>Hush — restaurant site</figcaption></figure><figure class="reveal"><img data-lightbox-img src="https://igrisportfolio.wordpress.com/wp-content/uploads/2026/07/9bdf84e6cd5a0b42760ac2d7327ea2ff8549497147939924842.jpg" alt="Stuffus electronics shop page"><figcaption>Stuffus — ecommerce</figcaption></figure></div></div></section>
+<section class="section" id="work">
+<div class="container">
+<div class="section-head"><h2>Selected work</h2><p>A tighter look at recent web, product and visual work. Click any image to open the full-resolution preview.</p></div>
+<div class="igris-gallery">
+<article class="igris-gallery-card wide reveal"><div class="igris-gallery-media"><img data-gallery-preview data-caption="Nexora Infinity Pro — product website" src="assets/work/nexora-watch.png" alt="Nexora Infinity Pro product website"><span class="igris-gallery-action">↗</span><div class="igris-gallery-overlay"><div class="igris-gallery-kicker">01 / Website & ecommerce</div><div class="igris-gallery-title">Nexora Infinity Pro</div><div class="igris-gallery-note">Product-focused interface with a premium dark visual system.</div></div></div></article>
+<article class="igris-gallery-card narrow reveal"><div class="igris-gallery-media"><img data-gallery-preview data-caption="Velora — product interface" src="assets/work/velora-headphones.png" alt="Velora headphones product page"><span class="igris-gallery-action">↗</span><div class="igris-gallery-overlay"><div class="igris-gallery-kicker">02 / Product UI</div><div class="igris-gallery-title">Velora</div><div class="igris-gallery-note">Clean product hierarchy and conversion-focused detail.</div></div></div></article>
+<article class="igris-gallery-card narrow reveal"><div class="igris-gallery-media"><img data-gallery-preview data-caption="Tropical Energy — campaign visual" src="assets/work/tropical-energy.png" alt="Tropical Energy drink campaign"><span class="igris-gallery-action">↗</span><div class="igris-gallery-overlay"><div class="igris-gallery-kicker">03 / Campaign visual</div><div class="igris-gallery-title">Tropical Energy</div><div class="igris-gallery-note">Bright product art built for instant feed recognition.</div></div></div></article>
+<article class="igris-gallery-card wide reveal"><div class="igris-gallery-media"><img data-gallery-preview data-caption="Shop — ecommerce experience" src="assets/work/shop-ecommerce.png" alt="Shop ecommerce website"><span class="igris-gallery-action">↗</span><div class="igris-gallery-overlay"><div class="igris-gallery-kicker">04 / Ecommerce</div><div class="igris-gallery-title">Shop</div><div class="igris-gallery-note">A straightforward storefront with strong category scanning.</div></div></div></article>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<div class="section-head"><h2>More work</h2><p>Different industries, same approach: make the idea easy to understand and hard to ignore.</p></div>
+<div class="igris-gallery">
+<article class="igris-gallery-card wide reveal"><div class="igris-gallery-media"><img data-gallery-preview data-caption="Product List — ecommerce catalogue" src="assets/work/product-list.png" alt="Product list ecommerce catalogue"><span class="igris-gallery-action">↗</span><div class="igris-gallery-overlay"><div class="igris-gallery-kicker">05 / Ecommerce</div><div class="igris-gallery-title">Product List</div><div class="igris-gallery-note">Catalogue layout designed for quick comparison and browsing.</div></div></div></article>
+<article class="igris-gallery-card narrow reveal"><div class="igris-gallery-media"><img data-gallery-preview data-caption="Premium Coffee — restaurant website" src="assets/work/premium-coffee.png" alt="Premium coffee restaurant website"><span class="igris-gallery-action">↗</span><div class="igris-gallery-overlay"><div class="igris-gallery-kicker">06 / Hospitality</div><div class="igris-gallery-title">Premium Coffee</div><div class="igris-gallery-note">Editorial food direction with a warmer visual tone.</div></div></div></article>
+<article class="igris-gallery-card narrow reveal"><div class="igris-gallery-media"><img data-gallery-preview data-caption="Good Food — restaurant website" src="assets/work/good-food.png" alt="Good Food restaurant website"><span class="igris-gallery-action">↗</span><div class="igris-gallery-overlay"><div class="igris-gallery-kicker">07 / Restaurant</div><div class="igris-gallery-title">Good Food</div><div class="igris-gallery-note">Menu-first structure with a bold, visual homepage.</div></div></div></article>
+</div>
+</div>
+</section>
 <section class="section"><div class="container stats"><div class="stat"><strong>40+</strong><span>Projects shipped</span></div><div class="stat"><strong>5M+</strong><span>Views & reach generated</span></div><div class="stat"><strong>3×</strong><span>Reported average conversion lift</span></div></div></section>
 <section class="section"><div class="container pixel-note"><div><div class="eyebrow">Pixel & Proof</div><h2 class="quote">Open the work. Don't just look at screenshots.</h2><p class="hero-copy" style="margin-top:20px">A separate collection of full, clickable builds you can actually use.</p></div><a class="btn primary" href="pixelproof.html">Open Pixel & Proof →</a></div></section>
 <section class="section"><div class="container"><p class="quote">If you have a real thing to make, <span style="color:var(--accent)">let's talk.</span></p><div class="actions"><a class="btn primary" href="contact.html">Start a project →</a></div></div></section></main>
@@ -14,5 +58,46 @@
   <button class="lightbox-close" id="lbClose" type="button" aria-label="Close preview">×</button>
   <div class="lightbox-inner"><img id="lbImg" alt=""><div class="lightbox-caption" id="lbCap"></div></div>
 </div>
+
+<div id="igris-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Full work image preview">
+  <div id="igris-lightbox-backdrop"></div>
+  <div id="igris-lightbox-frame">
+    <button id="igris-lightbox-close" type="button" aria-label="Close image preview">×</button>
+    <img id="igris-lightbox-img" alt="">
+    <div id="igris-lightbox-caption"></div>
+  </div>
+</div>
+<script>
+(function(){
+function initGallery(){
+  const box=document.getElementById('igris-lightbox'),img=document.getElementById('igris-lightbox-img'),
+        close=document.getElementById('igris-lightbox-close'),back=document.getElementById('igris-lightbox-backdrop'),
+        cap=document.getElementById('igris-lightbox-caption');
+  if(!box||!img||!close||!back)return;
+  let last=null;
+  function open(source){
+    last=source; img.src=source.currentSrc||source.src; img.alt=source.alt||'Work preview';
+    cap.textContent=source.dataset.caption||source.alt||'';
+    box.classList.add('open');box.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';close.focus();
+  }
+  function shut(){box.classList.remove('open');box.setAttribute('aria-hidden','true');img.removeAttribute('src');document.body.style.overflow='';if(last)last.focus?.()}
+  document.addEventListener('click',function(e){
+    const target=e.target.closest?.('img[data-gallery-preview]');
+    if(!target||box.contains(e.target))return;
+    e.preventDefault();e.stopPropagation();if(e.stopImmediatePropagation)e.stopImmediatePropagation();open(target);
+  },true);
+  document.addEventListener('keydown',function(e){
+    if(box.classList.contains('open')){
+      if(e.key==='Escape'){e.preventDefault();shut()}
+      return;
+    }
+    const a=document.activeElement;
+    if((e.key==='Enter'||e.key===' ')&&a?.matches?.('img[data-gallery-preview]')){e.preventDefault();open(a)}
+  },true);
+  close.addEventListener('click',shut);back.addEventListener('click',shut);
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initGallery);else initGallery();
+})();
+</script>
 <script src="igris-auth.js"></script>
 </body></html>
