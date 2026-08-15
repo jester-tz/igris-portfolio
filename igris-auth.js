@@ -78,7 +78,7 @@ function loginView(){
  <div id="igris-auth-msg"></div>`;
  document.getElementById('ia-login').onclick=async()=>{const r=await window.igrisSupabase.auth.signInWithPassword({email:document.getElementById('ia-email').value.trim(),password:document.getElementById('ia-password').value});if(r.error)return message(r.error.message);location.href='account.html'};
  document.getElementById('ia-register').onclick=registerView;
- document.getElementById('ia-forgot').onclick=async()=>{const e=document.getElementById('ia-email').value.trim();if(!e)return message('Enter your email first.');const r=await window.igrisSupabase.auth.resetPasswordForEmail(e,{redirectTo:location.href});message(r.error?r.error.message:'Password reset email sent. Check your inbox.')};
+ document.getElementById('ia-forgot').onclick=async()=>{const e=document.getElementById('ia-email').value.trim();if(!e)return message('Enter your email first.');const r=await window.igrisSupabase.auth.resetPasswordForEmail(e,{redirectTo:new URL('update-password.html',location.href).href});message(r.error?r.error.message:'Password reset email sent. Check your inbox.')};
  document.getElementById('ia-account').onclick=async()=>{const r=await window.igrisSupabase.auth.getUser();if(r.data.user)location.href='account.html';else message('Please sign in first.')};
 }
 function registerView(){
