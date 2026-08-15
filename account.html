@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Account — Igris</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.account-identity{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.account-id-card{padding:18px;border:1px solid rgba(0,0,0,.10);border-radius:18px;background:rgba(255,255,255,.42)}
+[data-theme="dark"] .account-id-card{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.045)}
+.account-id-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;opacity:.52;margin-bottom:6px}
+.account-id-value{font-size:15px;font-weight:600;word-break:break-word}
+.project-submit{margin-top:28px}
+.project-submit h2{margin-bottom:7px}
+.project-submit .sub{opacity:.62;font-size:13px;line-height:1.55;margin-bottom:18px}
+.file-drop{padding:18px;border:1px dashed rgba(0,0,0,.18);border-radius:15px;background:rgba(255,255,255,.3)}
+[data-theme="dark"] .file-drop{border-color:rgba(255,255,255,.16);background:rgba(255,255,255,.035)}
+.file-drop input{width:100%;font:inherit}
+.file-help{display:block;margin-top:7px;font-size:11px;opacity:.55;line-height:1.45}
+.project-list{margin-top:32px}
+.project-item{padding:18px 0;border-top:1px solid rgba(0,0,0,.10)}
+[data-theme="dark"] .project-item{border-top-color:rgba(255,255,255,.10)}
+.project-item h3{margin:0 0 6px}
+.project-meta{font-size:11px;opacity:.55;margin-bottom:9px}
+.project-files{margin:8px 0 0;padding-left:18px}
+.project-files li{margin:5px 0;font-size:12px}
+.project-files a{color:inherit}
+@media(max-width:650px){.account-identity{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<nav class="nav" aria-label="Primary">
+<a class="brand" href="index.html"><span class="brand-mark"></span>igris</a>
+<div class="nav-links"><a href="index.html">Work</a><a href="results.html">Results</a><a href="about.html">About</a><a href="videos.html">Videos</a><a href="pixelproof.html">Pixel & Proof</a><a href="contact.html">Contact</a></div>
+<div class="nav-actions"><a class="btn secondary start-btn" href="#submitProject">Start a project</a><button class="theme-toggle" id="themeToggle" aria-label="Switch theme">☾</button><button class="menu-btn" id="menuBtn" aria-expanded="false">☰</button></div>
+</nav>
+</header>
+
+<main id="main">
+<section class="page-intro">
+<div class="container">
+<div class="eyebrow">Project Account</div>
+<h1>Your account.</h1>
+<p>Manage your profile, keep your contact details visible, and send project requests and files securely.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="contact-layout">
+<div class="contact-form" id="accountCard">
+
+<div class="account-identity">
+<div class="account-id-card"><div class="account-id-label">Name</div><div class="account-id-value" id="accVisibleName">—</div></div>
+<div class="account-id-card"><div class="account-id-label">Email</div><div class="account-id-value" id="accVisibleEmail">—</div></div>
+</div>
+
+<div class="f-field"><label>Email</label><input id="accEmail" readonly></div>
+<div class="f-field"><label>Name</label><input id="accName" autocomplete="name"></div>
+<div class="f-field"><label>Username — must be unique</label><input id="accUsername" autocomplete="username"></div>
+<div class="f-field"><label>Phone <span>(optional)</span></label><input id="accPhone" type="tel" autocomplete="tel"></div>
+<div class="f-field"><label>New password <span>(leave blank to keep current password)</span></label><input id="accPassword" type="password" autocomplete="new-password"></div>
+<button class="btn primary" id="accSave">Save changes →</button>
+<button class="btn secondary" id="accLogout" style="margin-left:8px">Sign out</button>
+<p class="f-note" id="accNote"></p>
+
+<div class="project-submit" id="submitProject">
+<h2>Send a project</h2>
+<p class="sub">Tell Igris what you need. You can also attach a brief text file, design, ZIP, PDF, or other project material. Files stay private to your account.</p>
+
+<div class="f-field"><label for="projectTitle">Project title</label><input id="projectTitle" placeholder="e.g. Portfolio redesign"></div>
+<div class="f-grid">
+<div class="f-field"><label for="projectType">Project type</label><select id="projectType"><option>Website Design</option><option>Website Development</option><option>Website Redesign</option><option>Landing Page</option><option>Portfolio</option><option>E-commerce</option><option>Web Application</option><option>UI/UX Design</option><option>Interactive Website</option><option>Animated Website</option><option>Video Editing</option><option>Graphic Design</option><option>Other</option></select></div>
+<div class="f-field"><label for="projectBudget">Budget</label><select id="projectBudget"><option>Not sure yet</option><option>Under $500</option><option>$500–$1,000</option><option>$1,000–$2,500</option><option>$2,500–$5,000</option><option>$5,000+</option></select></div>
+</div>
+<div class="f-field"><label for="projectDeadline">Deadline <span>(optional)</span></label><input id="projectDeadline" type="date"></div>
+<div class="f-field"><label for="projectDescription">What do you need?</label><textarea id="projectDescription" placeholder="Explain the project, features, references, or anything you want me to know." required></textarea></div>
+
+<div class="file-drop">
+<label for="projectFiles"><strong>Attach project files</strong></label>
+<input id="projectFiles" type="file" multiple accept=".txt,.pdf,.zip,.rar,.7z,.doc,.docx,.png,.jpg,.jpeg,.webp,.svg,.fig,.psd,.ai,.xd,.mp4,.mov">
+<span class="file-help">Up to 5 files, 20 MB each. Do not upload passwords, payment details, malware, or files you do not have permission to share.</span>
+</div>
+
+<div class="igris-auth-row" style="margin-top:14px"><button class="btn primary" id="projectSubmit">Submit project →</button></div>
+<p class="f-note" id="projectNote"></p>
+</div>
+
+<div class="project-list" id="projectList"><h2>Your projects</h2><p class="f-note">Loading…</p></div>
+
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="footer"><div class="container footer-inner"><div><div class="footer-brand">igris</div><small>© <span id="year"></span> Igris.</small></div><div class="footer-nav"><a href="privacy.html">Privacy & Security</a><a href="privacy.html#terms">Terms & Conditions</a><a href="index.html">Work</a></div></div></footer>
+
+<script src="site.js"></script>
+<script src="igris-auth.js"></script>
+<script>
+(async()=>{
+  await new Promise(r=>setTimeout(r,350));
+  if(!window.igrisSupabase)return;
+  const sb=window.igrisSupabase;
+  const u=(await sb.auth.getUser()).data.user;
+  if(!u){location.href='index.html';return}
+
+  const email=document.getElementById('accEmail');
+  const name=document.getElementById('accName');
+  const username=document.getElementById('accUsername');
+  const phone=document.getElementById('accPhone');
+  const pass=document.getElementById('accPassword');
+  const note=document.getElementById('accNote');
+  const visibleName=document.getElementById('accVisibleName');
+  const visibleEmail=document.getElementById('accVisibleEmail');
+
+  email.value=u.email||'';
+  visibleEmail.textContent=u.email||'—';
+  name.value=u.user_metadata?.display_name||'';
+  username.value=u.user_metadata?.username||'';
+  phone.value=u.user_metadata?.phone||'';
+
+  const p=await sb.from('profiles').select('display_name,username,phone').eq('id',u.id).maybeSingle();
+  if(p.data){
+    name.value=p.data.display_name||name.value;
+    username.value=p.data.username||username.value;
+    phone.value=p.data.phone||phone.value;
+  }
+  visibleName.textContent=name.value||'—';
+
+  document.getElementById('accSave').onclick=async()=>{
+    const n=name.value.trim(),un=username.value.trim().toLowerCase(),ph=phone.value.trim(),pw=pass.value;
+    if(!n||!un)return note.textContent='Name and username are required.';
+    if(!/^[a-z0-9_](?:[a-z0-9._-]{1,28}[a-z0-9_])?$/.test(un))return note.textContent='Username must be 3–30 characters.';
+    const prof=await sb.from('profiles').upsert({id:u.id,display_name:n,username:un,phone:ph||null,updated_at:new Date().toISOString()});
+    if(prof.error)return note.textContent=prof.error.code==='23505'?'That username is already taken. Choose another.':prof.error.message;
+    const updates={data:{display_name:n,username:un,phone:ph||null}};
+    if(pw){if(pw.length<6)return note.textContent='New password must be at least 6 characters.';updates.password=pw}
+    const au=await sb.auth.updateUser(updates);
+    if(au.error)return note.textContent=au.error.message;
+    visibleName.textContent=n||'—';
+    note.textContent='Account updated successfully.';
+    pass.value='';
+  };
+
+  document.getElementById('accLogout').onclick=async()=>{await sb.auth.signOut();location.href='index.html'};
+
+  const projectNote=document.getElementById('projectNote');
+  const projectSubmit=document.getElementById('projectSubmit');
+
+  async function loadProjects(){
+    const list=document.getElementById('projectList');
+    const r=await sb.from('projects').select('id,title,project_type,description,budget,deadline,status,created_at').eq('user_id',u.id).order('created_at',{ascending:false});
+    if(r.error){list.innerHTML='<h2>Your projects</h2><p class="f-note">Projects could not be loaded right now.</p>';return}
+    if(!r.data?.length){list.innerHTML='<h2>Your projects</h2><p class="f-note">No projects submitted yet.</p>';return}
+    list.innerHTML='<h2>Your projects</h2>'+r.data.map(x=>`<article class="project-item"><h3>${escapeHtml(x.title)}</h3><div class="project-meta">${escapeHtml(x.project_type||'Project')} · ${escapeHtml(x.status||'new')} · ${new Date(x.created_at).toLocaleDateString()}</div><div style="opacity:.72;font-size:13px;line-height:1.6">${escapeHtml(x.description||'')}</div>${x.budget?`<div class="project-meta" style="margin-top:8px">Budget: ${escapeHtml(x.budget)}${x.deadline?' · Deadline: '+escapeHtml(x.deadline):''}</div>`:''}<ul class="project-files" id="files-${x.id}"><li>Loading files…</li></ul></article>`).join('');
+    for(const x of r.data){
+      const f=await sb.from('project_attachments').select('id,file_name,storage_path,file_size,mime_type').eq('project_id',x.id).order('created_at');
+      const el=document.getElementById('files-'+x.id);
+      if(!el)continue;
+      if(f.error||!f.data?.length){el.innerHTML='<li style="opacity:.5">No attachments</li>';continue}
+      el.innerHTML='';
+      for(const file of f.data){
+        const signed=await sb.storage.from('project-files').createSignedUrl(file.storage_path,3600);
+        const li=document.createElement('li');
+        if(signed.data?.signedUrl){
+          const a=document.createElement('a');a.href=signed.data.signedUrl;a.target='_blank';a.rel='noopener';a.textContent=file.file_name;li.appendChild(a);
+        }else li.textContent=file.file_name;
+        el.appendChild(li);
+      }
+    }
+  }
+
+  function escapeHtml(v){
+    return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+  }
+
+  projectSubmit.onclick=async()=>{
+    const title=document.getElementById('projectTitle').value.trim();
+    const type=document.getElementById('projectType').value;
+    const budget=document.getElementById('projectBudget').value;
+    const deadline=document.getElementById('projectDeadline').value||null;
+    const description=document.getElementById('projectDescription').value.trim();
+    const files=[...document.getElementById('projectFiles').files];
+
+    if(!title||!description)return projectNote.textContent='Please add a project title and explain what you need.';
+    if(files.length>5)return projectNote.textContent='Please keep attachments to 5 files or fewer.';
+    if(files.some(f=>f.size>20*1024*1024))return projectNote.textContent='Each file must be 20 MB or smaller.';
+
+    projectSubmit.disabled=true;projectSubmit.textContent='Submitting…';projectNote.textContent='';
+
+    const pr=await sb.from('projects').insert({user_id:u.id,title,project_type:type,description,budget,deadline,status:'new'}).select('id').single();
+    if(pr.error){projectSubmit.disabled=false;projectSubmit.textContent='Submit project →';return projectNote.textContent=pr.error.message}
+
+    const projectId=pr.data.id;
+    for(const file of files){
+      const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_').slice(0,160);
+      const path=u.id+'/'+projectId+'/'+crypto.randomUUID()+'-'+safe;
+      const up=await sb.storage.from('project-files').upload(path,file,{upsert:false});
+      if(up.error){
+        await sb.from('projects').delete().eq('id',projectId).eq('user_id',u.id);
+        projectSubmit.disabled=false;projectSubmit.textContent='Submit project →';
+        return projectNote.textContent='The project was not submitted because one file could not be uploaded: '+up.error.message;
+      }
+      const meta=await sb.from('project_attachments').insert({project_id:projectId,user_id:u.id,file_name:file.name,storage_path:path,file_size:file.size,mime_type:file.type||null});
+      if(meta.error){
+        await sb.storage.from('project-files').remove([path]);
+        await sb.from('projects').delete().eq('id',projectId).eq('user_id',u.id);
+        projectSubmit.disabled=false;projectSubmit.textContent='Submit project →';
+        return projectNote.textContent='The project was not submitted because the attachment record could not be saved.';
+      }
+    }
+
+    document.getElementById('projectTitle').value='';
+    document.getElementById('projectDescription').value='';
+    document.getElementById('projectDeadline').value='';
+    document.getElementById('projectFiles').value='';
+    projectSubmit.disabled=false;projectSubmit.textContent='Submit project →';
+    projectNote.textContent='Project submitted successfully. Igris can now review your request and attached files.';
+    await loadProjects();
+  };
+
+  loadProjects();
+})();
+</script>
+</body>
+</html>
