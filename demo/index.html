@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Palette Bistro — a warm contemporary dining space at Doha Festival City.">
+<title>Palette Bistro — Doha Festival City</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f0e7;
+  --surface:#fbfaf5;
+  --surface-2:#e5e0d3;
+  --ink:#20261f;
+  --muted:#687064;
+  --line:#d2cdbd;
+  --accent:#3f5b46;
+  --accent-dark:#2e4434;
+  --accent-soft:#dfe7dc;
+  --warm:#a77a4b;
+  --shadow:0 20px 55px rgba(35,45,35,.12);
+  --radius:18px;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --display:"Italiana",Georgia,serif;
+  --sans:Inter,ui-sans-serif,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+html.lenis{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent);color:#fff}
+img,video{display:block;width:100%;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.container{width:min(1240px,calc(100% - 48px));margin:auto}
+
+/* ---------- film grain + vignette ---------- */
+.grain{
+  position:fixed;inset:-100%;z-index:200;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity:.055;animation:grainShift 1.1s steps(4) infinite;
+}
+@keyframes grainShift{
+  0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}
+  50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-2%)}100%{transform:translate(0,0)}
+}
+.vignette{
+  position:fixed;inset:0;z-index:199;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 62%,rgba(32,38,31,.10) 100%);
+}
+
+/* ---------- custom cursor ---------- */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;z-index:300;pointer-events:none;border-radius:50%;mix-blend-mode:difference}
+.cursor-dot{width:8px;height:8px;background:#fff;transform:translate(-50%,-50%)}
+.cursor-ring{width:38px;height:38px;border:1px solid rgba(255,255,255,.85);transform:translate(-50%,-50%);transition:width .3s ease,height .3s ease,opacity .3s ease}
+.cursor-ring.grow{width:76px;height:76px;opacity:.65}
+@media (hover:none){.cursor-dot,.cursor-ring{display:none}}
+
+/* ---------- preloader ---------- */
+.preloader{
+  position:fixed;inset:0;z-index:400;background:var(--accent-dark);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:26px;
+}
+.preloader-word{overflow:hidden}
+.preloader-word span{
+  display:inline-block;font-family:var(--display);font-size:clamp(3rem,9vw,7rem);
+  color:var(--bg);letter-spacing:.04em;transform:translateY(110%);
+}
+.preloader-count{font-family:var(--sans);font-size:.75rem;letter-spacing:.35em;color:rgba(243,240,231,.55);text-transform:uppercase}
+.preloader-bar{width:min(280px,60vw);height:1px;background:rgba(243,240,231,.2);position:relative;overflow:hidden}
+.preloader-bar i{position:absolute;inset:0;background:var(--bg);transform:scaleX(0);transform-origin:left}
+.preloader-curtain{position:fixed;inset:0;z-index:399;background:var(--bg);transform:scaleY(0);transform-origin:top}
+
+/* ---------- header ---------- */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:22px 0;transition:padding .4s ease,background .4s ease,box-shadow .4s ease;
+}
+.site-header.scrolled{
+  padding:12px 0;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(16px);
+  box-shadow:0 1px 0 var(--line);
+}
+.nav{display:flex;align-items:center;gap:30px}
+.brand{font-family:var(--display);font-size:1.5rem;letter-spacing:.06em;white-space:nowrap}
+.brand em{font-style:normal;color:var(--accent)}
+.nav-links{display:flex;gap:30px;margin-left:auto}
+.nav-links a{
+  font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  position:relative;padding:4px 0;transition:color .3s ease;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
+  background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .45s cubic-bezier(.2,.7,.2,1);
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* ---------- hero ---------- */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:130px 0 60px;overflow:hidden}
+.hero-bg-text{
+  position:absolute;top:8%;left:50%;transform:translateX(-50%);
+  font-family:var(--display);font-size:clamp(10rem,26vw,26rem);line-height:1;
+  color:transparent;-webkit-text-stroke:1px var(--line);
+  white-space:nowrap;pointer-events:none;user-select:none;
+}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  text-transform:uppercase;letter-spacing:.24em;color:var(--accent);
+  font-size:.72rem;font-weight:600;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--accent)}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.05;margin:0}
+.hero h1{font-family:var(--display);font-size:clamp(4rem,8.5vw,8rem);letter-spacing:-.02em;margin:26px 0}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line span{display:block}
+.hero h1 .accent-line{font-style:italic;font-family:var(--serif);color:var(--accent);font-size:.72em}
+.lede{font-size:1.05rem;color:var(--muted);max-width:520px;font-weight:300}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px}
+.btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 26px;border:1px solid var(--line);border-radius:999px;
+  background:transparent;color:var(--ink);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+  overflow:hidden;cursor:pointer;transition:color .4s ease,border-color .4s ease;isolation:isolate;
+}
+.btn::before{
+  content:"";position:absolute;inset:0;z-index:-1;background:var(--accent);
+  border-radius:inherit;transform:translateY(101%);transition:transform .45s cubic-bezier(.2,.7,.2,1);
+}
+.btn:hover{color:#fff;border-color:var(--accent)}
+.btn:hover::before{transform:translateY(0)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary::before{background:var(--accent-dark)}
+.hero-media{position:relative}
+.hero-frame{overflow:hidden;border-radius:200px 200px 24px 24px;box-shadow:var(--shadow);aspect-ratio:3/3.7;background:var(--surface-2)}
+.hero-frame img{height:100%;object-fit:cover;transform:scale(1.15)}
+.rating-badge{
+  position:absolute;left:-30px;bottom:40px;background:var(--surface);
+  border:1px solid var(--line);padding:18px 22px;border-radius:16px;box-shadow:var(--shadow);
+}
+.rating-badge strong{font-family:var(--display);font-size:1.8rem;font-weight:400}
+.stars{color:var(--warm);letter-spacing:.14em;font-size:.8rem}
+.rating-badge small{display:block;color:var(--muted);font-size:.75rem;margin-top:2px}
+.hero-side-tag{
+  position:absolute;right:-58px;top:50%;transform:rotate(90deg) translateX(-50%);transform-origin:right;
+  font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);white-space:nowrap;
+}
+.scroll-hint{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);
+}
+.scroll-hint i{display:block;width:1px;height:52px;background:var(--line);position:relative;overflow:hidden}
+.scroll-hint i::after{content:"";position:absolute;left:0;top:-100%;width:100%;height:100%;background:var(--accent);animation:scrollDrop 1.8s cubic-bezier(.7,0,.3,1) infinite}
+@keyframes scrollDrop{0%{top:-100%}55%{top:0}100%{top:100%}}
+
+/* ---------- marquee ---------- */
+.marquee{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:22px 0;overflow:hidden;white-space:nowrap;background:var(--surface);
+}
+.marquee-track{display:inline-flex;gap:0;will-change:transform}
+.marquee-track span{
+  display:inline-flex;align-items:center;gap:26px;padding:0 26px;
+  font-family:var(--display);font-size:1.6rem;letter-spacing:.1em;color:var(--ink);
+}
+.marquee-track span::after{content:"·";color:var(--warm);font-size:2rem;line-height:0}
+.marquee-track span:nth-child(even){color:transparent;-webkit-text-stroke:1px var(--muted)}
+
+/* ---------- sections ---------- */
+.section{padding:120px 0;position:relative}
+.section-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:56px}
+.section-head h2{font-size:clamp(2.4rem,4.6vw,3.8rem);margin-top:18px}
+.section-head p{max-width:460px;color:var(--muted);margin:0;font-weight:300}
+.section-index{
+  position:absolute;top:110px;right:24px;font-family:var(--display);
+  font-size:.85rem;letter-spacing:.3em;color:var(--muted);
+  writing-mode:vertical-rl;
+}
+
+/* intro */
+.intro{display:grid;grid-template-columns:1.15fr .85fr;gap:80px;align-items:end}
+.intro h2{font-size:clamp(2.2rem,4vw,3.4rem)}
+.intro-copy p{color:var(--muted);font-size:1.03rem;font-weight:300;max-width:560px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.stat{padding:26px 16px 0;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat strong{display:block;font-family:var(--display);font-weight:400;font-size:2.4rem}
+.stat span{font-size:.78rem;color:var(--muted);letter-spacing:.06em}
+
+/* video */
+.video-section{background:var(--surface-2);overflow:hidden}
+.video-wrap{
+  position:relative;border-radius:28px;overflow:hidden;box-shadow:var(--shadow);background:#111;
+}
+.video-wrap video{aspect-ratio:16/7.5;object-fit:cover;transform:scale(1.12)}
+.video-label{
+  position:absolute;left:26px;bottom:24px;background:rgba(0,0,0,.6);color:#fff;
+  padding:10px 16px;border-radius:999px;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  backdrop-filter:blur(6px);
+}
+.video-play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:96px;height:96px;border-radius:50%;border:1px solid rgba(255,255,255,.5);
+  background:rgba(0,0,0,.35);backdrop-filter:blur(8px);color:#fff;font-size:1.4rem;
+  display:grid;place-items:center;cursor:pointer;transition:transform .35s ease,opacity .35s ease;
+}
+.video-play:hover{transform:translate(-50%,-50%) scale(1.1)}
+.video-play.hidden{opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.7)}
+
+/* menu cards */
+.menu-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.menu-card{
+  overflow:hidden;border:1px solid var(--line);background:var(--surface);border-radius:20px;
+  transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease;cursor:pointer;
+}
+.menu-card:nth-child(2){transform:translateY(44px)}
+.menu-card:hover{transform:translateY(-10px)!important;box-shadow:var(--shadow)}
+.menu-card:nth-child(2):hover{transform:translateY(34px)!important}
+.menu-card .photo{overflow:hidden;aspect-ratio:4/4.6}
+.menu-card img{height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.menu-card:hover img{transform:scale(1.1) rotate(.5deg)}
+.menu-card .copy{padding:22px 24px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.menu-card h3{font-size:1.5rem}
+.menu-card .price{font-family:var(--display);color:var(--warm);font-size:1.1rem;white-space:nowrap}
+.menu-card p{color:var(--muted);margin:0;padding:0 24px 22px;font-size:.9rem;font-weight:300}
+
+/* split feature */
+.split-feature{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.split-media{position:relative}
+.split-media .main-img{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/3.4}
+.split-media .main-img img{height:100%;object-fit:cover}
+.split-media .float-img{
+  position:absolute;right:-34px;bottom:-52px;width:44%;border-radius:18px;overflow:hidden;
+  border:6px solid var(--bg);box-shadow:var(--shadow);aspect-ratio:3/3.6;
+}
+.split-media .float-img img{height:100%;object-fit:cover}
+.split-copy h2{font-size:clamp(2.2rem,3.8vw,3.2rem);margin:18px 0 20px}
+.feature-list{display:grid;gap:0;margin-top:34px}
+.feature-list div{
+  padding:20px 0;border-top:1px solid var(--line);display:flex;gap:22px;align-items:baseline;
+  transition:padding-left .4s ease;
+}
+.feature-list div:hover{padding-left:12px}
+.feature-list .num{font-family:var(--display);color:var(--warm);font-size:.9rem;letter-spacing:.1em}
+.feature-list strong{display:block;font-family:var(--serif);font-size:1.25rem;font-weight:600}
+.feature-list span{color:var(--muted);font-size:.9rem;font-weight:300}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:1.15fr .85fr .85fr;grid-auto-rows:250px;gap:16px}
+.gallery figure{margin:0;overflow:hidden;border-radius:18px;background:var(--surface-2);position:relative}
+.gallery figure:first-child{grid-row:span 2}
+.gallery img{height:100%;width:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .6s ease}
+.gallery figure:hover img{transform:scale(1.09);filter:saturate(1.1)}
+.gallery figcaption{
+  position:absolute;left:16px;bottom:14px;color:#fff;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  background:rgba(0,0,0,.5);padding:7px 12px;border-radius:999px;backdrop-filter:blur(6px);
+  opacity:0;transform:translateY(10px);transition:.4s ease;
+}
+.gallery figure:hover figcaption{opacity:1;transform:none}
+
+/* reviews strip */
+.reviews-strip{background:var(--surface)}
+.review-summary{
+  display:grid;grid-template-columns:280px 1fr;gap:50px;align-items:center;
+  background:var(--bg);border:1px solid var(--line);border-radius:24px;padding:40px 44px;box-shadow:var(--shadow);
+}
+.big-rating{font-family:var(--display);font-size:5.4rem;line-height:1}
+.review-note{color:var(--muted);font-weight:300}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.review-card{padding:26px;background:var(--surface);border:1px solid var(--line);border-radius:18px;transition:transform .4s ease,box-shadow .4s ease}
+.review-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.review-card .stars{font-size:.75rem}
+.review-card p{color:var(--muted);margin:12px 0 0;font-size:.92rem;font-weight:300}
+.review-card strong{font-family:var(--serif);font-size:1.05rem}
+
+/* info */
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.info-item{padding:32px 26px;border-right:1px solid var(--line)}
+.info-item:last-child{border-right:0}
+.info-item strong{display:block;margin-bottom:8px;font-family:var(--serif);font-size:1.2rem}
+.info-item span{color:var(--muted);font-size:.94rem;font-weight:300}
+
+/* CTA */
+.cta{
+  position:relative;background:var(--accent);color:#fff;border-radius:28px;padding:70px 64px;
+  display:flex;align-items:center;justify-content:space-between;gap:34px;overflow:hidden;
+}
+.cta::before{
+  content:"Palette";position:absolute;right:-2%;bottom:-34%;
+  font-family:var(--display);font-size:16rem;color:rgba(255,255,255,.06);pointer-events:none;line-height:1;
+}
+.cta h2{font-size:clamp(2.4rem,4.4vw,3.6rem)}
+.cta .eyebrow{color:#cfe0cf}.cta .eyebrow::before{background:#cfe0cf}
+.cta p{color:#d7e2d7;max-width:540px;font-weight:300;margin:16px 0 0}
+.cta .btn{background:#fff;color:var(--accent-dark);border-color:#fff}
+.cta .btn::before{background:var(--accent-dark)}
+.cta .btn:hover{color:#fff}
+
+/* footer */
+.footer{padding:64px 0 40px;border-top:1px solid var(--line)}
+.footer-grid{display:flex;justify-content:space-between;gap:30px;align-items:end}
+.footer p{color:var(--muted);margin:7px 0;font-size:.9rem;font-weight:300}
+.footer-links{display:flex;gap:22px;color:var(--muted);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase}
+.footer-links a{transition:color .3s ease}
+.footer-links a:hover{color:var(--accent)}
+.footer-bottom{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+/* reveal defaults (JS animates) */
+.will-reveal{opacity:0}
+.char{display:inline-block;will-change:transform}
+
+/* progress bar */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:150;background:var(--accent);transform:scaleX(0);transform-origin:left}
+
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hero{padding-top:110px}
+  .hero-grid,.intro,.split-feature,.review-summary{grid-template-columns:1fr;gap:44px}
+  .hero-media{order:-1;max-width:420px;margin:0 auto}
+  .hero-frame{aspect-ratio:3/3.4}
+  .hero-side-tag{display:none}
+  .rating-badge{left:12px;bottom:20px}
+  .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:220px}
+  .gallery figure:first-child{grid-row:span 1}
+  .menu-preview,.info-grid,.review-grid{grid-template-columns:1fr}
+  .menu-card:nth-child(2){transform:none}
+  .menu-card:nth-child(2):hover{transform:translateY(-10px)!important}
+  .info-item{border-right:0;border-bottom:1px solid var(--line)}
+  .info-item:last-child{border-bottom:0}
+  .cta{display:block;padding:44px 34px}
+  .cta .btn{margin-top:20px}
+  .cta::before{font-size:8rem}
+  .section{padding:80px 0}
+  .section-head{display:block}
+  .section-head p{margin-top:14px}
+  .split-media .float-img{right:0;bottom:-36px}
+  .stats{grid-template-columns:1fr 1fr 1fr}
+  .section-index{display:none}
+  .footer-grid{display:block}
+  .footer-links{margin-top:20px;flex-wrap:wrap}
+  .video-wrap video{aspect-ratio:16/10}
+}
+@media(max-width:560px){
+  .container{width:min(100% - 30px,1240px)}
+  .stats{grid-template-columns:1fr}
+  .stat{border-right:0;border-bottom:1px solid var(--line);padding:16px 0}
+  .gallery{grid-template-columns:1fr;grid-auto-rows:250px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .will-reveal{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<div class="preloader" id="preloader">
+  <div class="preloader-word"><span id="preloaderWord">Palette Bistro</span></div>
+  <div class="preloader-bar"><i id="preloaderBar"></i></div>
+  <div class="preloader-count" id="preloaderCount">00</div>
+</div>
+<div class="preloader-curtain" id="curtain"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="container nav">
+    <a class="brand" href="#top">Palette <em>Bistro</em></a>
+    <nav class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#menu">Menu</a>
+      <a href="#room">The Room</a>
+      <a href="#photos">Photos</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-text" data-parallax="-0.18">PALETTE</div>
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow will-reveal" data-fade>Doha · Festival City</div>
+        <h1 id="heroTitle">
+          <span class="line"><span>Palette</span></span>
+          <span class="line accent-line"><span>bistro</span></span>
+        </h1>
+        <p class="lede will-reveal" data-fade>A warm, contemporary dining space at Doha Festival City — good food, warm light and slow moments, presented with the character of the original photography.</p>
+        <div class="hero-actions will-reveal" data-fade>
+          <a class="btn primary magnetic" href="#menu">View menu</a>
+          <a class="btn magnetic" href="tel:+97451051155">Call</a>
+          <a class="btn magnetic" href="https://wa.me/97451051155" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="hero-frame"><img id="heroImg" src="assets/dessert.jpg" alt="Palette Bistro dessert and tea service"></div>
+        <div class="rating-badge will-reveal" data-fade>
+          <strong>4.7</strong>
+          <div class="stars">★★★★★</div>
+          <small>582 reviews</small>
+        </div>
+        <div class="hero-side-tag">Est. Doha — Festival City</div>
+      </div>
+    </div>
+    <div class="scroll-hint will-reveal" data-fade>Scroll<i></i></div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marqueeTrack">
+      <span>Warm timber</span><span>Slow moments</span><span>Soft lighting</span><span>Fresh plates</span><span>Quiet textures</span><span>Doha Festival City</span>
+      <span>Warm timber</span><span>Slow moments</span><span>Soft lighting</span><span>Fresh plates</span><span>Quiet textures</span><span>Doha Festival City</span>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="section" id="experience">
+    <span class="section-index">01 — Experience</span>
+    <div class="container intro">
+      <div class="intro-copy">
+        <div class="eyebrow will-reveal" data-fade>The experience</div>
+        <h2 class="will-reveal" data-split>A place for good food, warm light and slow moments.</h2>
+        <p class="will-reveal" data-fade>Palette Bistro is a calm interior built around warm timber, soft neutral finishes, greenery and sculptural lighting — a showcase that gives those details room to breathe instead of compressing everything into one screen.</p>
+      </div>
+      <div>
+        <div class="stats">
+          <div class="stat will-reveal" data-fade><strong data-count="4.7" data-decimals="1">0.0</strong><span>Restaurant rating</span></div>
+          <div class="stat will-reveal" data-fade><strong data-count="582">0</strong><span>Reviews shown</span></div>
+          <div class="stat will-reveal" data-fade><strong>50–100</strong><span>QAR per person</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="section video-section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow will-reveal" data-fade>Inside Palette</div>
+          <h2 class="will-reveal" data-split>See the atmosphere.</h2>
+        </div>
+        <p class="will-reveal" data-fade>A dedicated video section — the restaurant's own ambience, in motion.</p>
+      </div>
+      <div class="video-wrap will-reveal" data-fade>
+        <video id="ambienceVideo" src="assets/ambience.mp4" muted loop playsinline poster="assets/detail.png"></video>
+        <div class="video-label">Palette Bistro · ambience</div>
+        <button class="video-play" id="videoPlay" aria-label="Play video">▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="section" id="menu">
+    <span class="section-index">02 — Menu</span>
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow will-reveal" data-fade>From the kitchen</div>
+          <h2 class="will-reveal" data-split>A visual taste of the menu.</h2>
+        </div>
+        <p class="will-reveal" data-fade>Food photography presented as an editorial selection with motion on hover and scroll.</p>
+      </div>
+      <div class="menu-preview">
+        <article class="menu-card will-reveal" data-fade>
+          <div class="photo"><img src="assets/pasta.jpg" alt="Plated pasta dish with toast"></div>
+          <div class="copy"><h3>Pasta &amp; toast</h3><span class="price">QAR 65</span></div>
+          <p>Featured plate from the restaurant photography — comforting, generous, warm.</p>
+        </article>
+        <article class="menu-card will-reveal" data-fade>
+          <div class="photo"><img src="assets/bowl.jpg" alt="Fruit and granola breakfast bowl"></div>
+          <div class="copy"><h3>Breakfast bowl</h3><span class="price">QAR 52</span></div>
+          <p>Fresh, colorful presentation — granola, berries and a slow morning mood.</p>
+        </article>
+        <article class="menu-card will-reveal" data-fade>
+          <div class="photo"><img src="assets/coffee.jpg" alt="Latte with heart art"></div>
+          <div class="copy"><h3>Coffee service</h3><span class="price">QAR 28</span></div>
+          <p>A plated finish styled for a relaxed dining experience, any hour of the day.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE ROOM -->
+  <section class="section" id="room" style="padding-top:40px">
+    <span class="section-index">03 — The Room</span>
+    <div class="container split-feature">
+      <div class="split-media">
+        <div class="main-img will-reveal" data-fade><img src="assets/interior-wide.jpg" alt="Palette Bistro dining room with sculptural ceiling" data-parallax-img></div>
+        <div class="float-img" data-float><img src="assets/detail.png" alt="Woven interior detail"></div>
+      </div>
+      <div class="split-copy">
+        <div class="eyebrow will-reveal" data-fade>The room</div>
+        <h2 class="will-reveal" data-split>Warm details, considered from every angle.</h2>
+        <p class="lede will-reveal" data-fade>The interior photography gives the brand a distinctive identity: natural wood, woven textures, soft seating and warm architectural lighting.</p>
+        <div class="feature-list">
+          <div class="will-reveal" data-fade><span class="num">01</span><div><strong>Warm timber</strong><span>Natural wood tones create the foundation of the dining room.</span></div></div>
+          <div class="will-reveal" data-fade><span class="num">02</span><div><strong>Soft lighting</strong><span>Layered pendant and ceiling lighting keeps the space inviting.</span></div></div>
+          <div class="will-reveal" data-fade><span class="num">03</span><div><strong>Quiet textures</strong><span>Woven screens and curved forms add character without visual clutter.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section" id="photos" style="padding-top:60px">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow will-reveal" data-fade>Photo story</div>
+          <h2 class="will-reveal" data-split>Look around.</h2>
+        </div>
+        <p class="will-reveal" data-fade>Large-format imagery with presence on desktop, responsive on mobile.</p>
+      </div>
+      <div class="gallery">
+        <figure class="will-reveal" data-fade><img src="assets/interior-counter.jpg" alt="Palette Bistro counter and lighting"><figcaption>The counter</figcaption></figure>
+        <figure class="will-reveal" data-fade><img src="assets/storefront.jpg" alt="Palette Bistro storefront at Doha Festival City"><figcaption>Storefront</figcaption></figure>
+        <figure class="will-reveal" data-fade><img src="assets/detail.png" alt="Woven screen interior detail"><figcaption>Details</figcaption></figure>
+        <figure class="will-reveal" data-fade><img src="assets/pasta.jpg" alt="Plated bistro dish"><figcaption>From the kitchen</figcaption></figure>
+        <figure class="will-reveal" data-fade><img src="assets/dessert.jpg" alt="Dessert and tea service"><figcaption>Dessert service</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section reviews-strip" id="reviews">
+    <span class="section-index">04 — Reviews</span>
+    <div class="container">
+      <div class="review-summary will-reveal" data-fade>
+        <div>
+          <div class="big-rating" data-count="4.7" data-decimals="1">0.0</div>
+          <div class="stars" style="font-size:1.1rem;margin:12px 0">★★★★★</div>
+          <div class="review-note">Based on 582 reviews</div>
+        </div>
+        <p class="lede" style="max-width:none">Guests come back for the calm: warm timber, soft light, generous plates and coffee worth lingering over — a room designed for slow moments in the middle of Festival City.</p>
+      </div>
+      <div class="review-grid">
+        <div class="review-card will-reveal" data-fade><div class="stars">★★★★★</div><strong>Beautiful, calm space</strong><p>"The lighting and wood interior make it one of the prettiest spots in the mall. Coffee was excellent."</p></div>
+        <div class="review-card will-reveal" data-fade><div class="stars">★★★★★</div><strong>Great breakfast bowl</strong><p>"Fresh, colorful and generous. Service was warm and unhurried — exactly the mood of the room."</p></div>
+        <div class="review-card will-reveal" data-fade><div class="stars">★★★★☆</div><strong>Worth the visit</strong><p>"A quiet corner inside Festival City. Dessert service was the highlight of our evening."</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section class="section" id="visit" style="padding-top:80px;padding-bottom:80px">
+    <div class="container">
+      <div class="info-grid">
+        <div class="info-item will-reveal" data-fade><strong>Location</strong><span>1st Floor Doha Festival City, VIP Section Al Shamal Rd, Umm Salal Muhammed, Doha, Qatar</span></div>
+        <div class="info-item will-reveal" data-fade><strong>Hours</strong><span>Open · Closes 11 pm</span></div>
+        <div class="info-item will-reveal" data-fade><strong>Price</strong><span>QAR 50–100 per person</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="cta will-reveal" data-fade>
+        <div>
+          <div class="eyebrow">Visit Palette Bistro</div>
+          <h2 style="margin-top:16px">Ready for the table?</h2>
+          <p>Call, message on WhatsApp or open directions to find the restaurant at Doha Festival City.</p>
+        </div>
+        <a class="btn magnetic" href="https://www.google.com/maps/search/?api=1&query=Palette+Bistro+Doha" target="_blank" rel="noopener">Get directions</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="brand">Palette <em>Bistro</em></div>
+      <p>1st Floor Doha Festival City, VIP Section Al Shamal Rd,<br>Umm Salal Muhammed, Doha, Qatar</p>
+      <p>Open · Closes 11 pm · QAR 50–100 per person</p>
+    </div>
+    <div class="footer-links">
+      <a href="tel:+97451051155">Call</a>
+      <a href="https://wa.me/97451051155" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://www.google.com/maps/search/?api=1&query=Palette+Bistro+Doha" target="_blank" rel="noopener">Directions</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>Palette Bistro</span><span>Doha · Qatar</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
