@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Empire State Coffee Artisan Roasters — artisan coffee, fresh food and relaxed atmosphere in Dundee." />
+  <title>Empire State Coffee | Artisan Roasters</title>
+  <style>
+    :root{
+      --bg:#f7f3ed;
+      --surface:#fffdf9;
+      --surface-2:#eee7dc;
+      --text:#241d18;
+      --muted:#6e6258;
+      --accent:#7a4a2d;
+      --accent-dark:#56321f;
+      --border:#ddd2c4;
+      --shadow:0 12px 30px rgba(47,34,24,.08);
+      --radius:14px;
+    }
+    [data-theme="dark"]{
+      --bg:#171412;
+      --surface:#211d19;
+      --surface-2:#2a241f;
+      --text:#f5eee5;
+      --muted:#b8aa9c;
+      --accent:#c18a5e;
+      --accent-dark:#e0a875;
+      --border:#3b332d;
+      --shadow:0 12px 30px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      transition:background .3s ease,color .3s ease;
+    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .container{width:min(1160px,calc(100% - 40px));margin:auto}
+    header{
+      position:sticky;top:0;z-index:20;
+      background:color-mix(in srgb,var(--bg) 94%,transparent);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px
+    }
+    .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em}
+    .mark{
+      width:34px;height:34px;border:1px solid var(--accent);border-radius:50%;
+      display:grid;place-items:center;color:var(--accent);font-size:15px
+    }
+    nav{display:flex;gap:28px;color:var(--muted);font-size:14px}
+    nav a{transition:color .2s ease}
+    nav a:hover{color:var(--accent)}
+    .actions{display:flex;align-items:center;gap:9px}
+    .theme{
+      width:40px;height:40px;border:1px solid var(--border);background:var(--surface);
+      color:var(--text);border-radius:50%;cursor:pointer
+    }
+    .menu{display:none;width:40px;height:40px;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:10px}
+    .hero{padding:72px 0 88px}
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:64px;align-items:center}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;color:var(--accent);
+      font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase
+    }
+    .eyebrow::before{content:"";width:25px;height:1px;background:var(--accent)}
+    h1{
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:clamp(48px,6vw,78px);line-height:.98;letter-spacing:-.045em;
+      margin:18px 0 22px;font-weight:500
+    }
+    .hero p{max-width:570px;color:var(--muted);font-size:18px}
+    .hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;min-height:48px;
+      padding:0 20px;border:1px solid var(--accent);border-radius:9px;
+      font-size:14px;font-weight:750;transition:transform .2s ease,background .2s ease,color .2s ease,border-color .2s ease
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn.primary{background:var(--accent);color:#fff}
+    .btn.primary:hover{background:var(--accent-dark)}
+    .btn.secondary{background:transparent;color:var(--text);border-color:var(--border)}
+    .hero-photo{
+      min-height:510px;border-radius:18px;overflow:hidden;position:relative;
+      background:url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1200&q=85") center/cover;
+      box-shadow:var(--shadow)
+    }
+    .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,13,8,.48))}
+    .photo-caption{
+      position:absolute;left:26px;right:26px;bottom:24px;z-index:1;color:#fff;
+      display:flex;justify-content:space-between;align-items:end;gap:20px
+    }
+    .photo-caption strong{font-family:Georgia,serif;font-size:25px;font-weight:500}
+    .rating{font-size:13px;text-align:right}
+    .rating b{font-size:18px}
+    .strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface)}
+    .strip-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .strip-item{padding:22px 20px;border-right:1px solid var(--border)}
+    .strip-item:last-child{border-right:0}
+    .strip-item strong{display:block;font-size:15px}
+    .strip-item span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+    section{padding:96px 0}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:38px}
+    .section-head h2{
+      font-family:Georgia,serif;font-size:clamp(34px,4vw,50px);font-weight:500;letter-spacing:-.035em;
+      margin:8px 0 0;line-height:1.05
+    }
+    .section-head p{max-width:470px;color:var(--muted);margin:0}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .feature{
+      background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+      padding:30px;box-shadow:0 6px 20px rgba(47,34,24,.035)
+    }
+    .feature img{width:100%;height:210px;object-fit:cover;border-radius:10px;margin-bottom:22px}
+    .feature h3{margin:0 0 8px;font-family:Georgia,serif;font-size:25px;font-weight:500}
+    .feature p{margin:0;color:var(--muted);font-size:14px}
+    .menu-section{background:var(--surface-2)}
+    .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .menu-card{background:var(--surface);border:1px solid var(--border);padding:28px;border-radius:var(--radius)}
+    .menu-row{display:flex;justify-content:space-between;gap:20px;padding:17px 0;border-bottom:1px solid var(--border)}
+    .menu-row:last-child{border-bottom:0}
+    .menu-row strong{font-size:15px}.menu-row span{color:var(--muted);font-size:13px}
+    .reviews{display:grid;grid-template-columns:.75fr 1.25fr;gap:60px;align-items:start}
+    .score{font-family:Georgia,serif;font-size:72px;line-height:1;margin:18px 0 8px}
+    .stars{letter-spacing:3px;color:var(--accent);font-size:18px}
+    .review-list{display:grid;gap:0}
+    blockquote{margin:0;padding:26px 0;border-top:1px solid var(--border);font-family:Georgia,serif;font-size:23px;line-height:1.35}
+    blockquote footer{margin-top:10px;font-family:inherit;font-size:12px;color:var(--muted)}
+    .visit{
+      background:var(--accent);color:#fff;border-radius:18px;padding:55px 60px;
+      display:flex;align-items:center;justify-content:space-between;gap:30px
+    }
+    .visit h2{font-family:Georgia,serif;font-size:clamp(34px,4vw,50px);font-weight:500;line-height:1.05;margin:0 0 12px}
+    .visit p{margin:0;color:#eaded3;max-width:560px}
+    .visit .btn{border-color:#fff;color:#fff}
+    .visit .btn:hover{background:#fff;color:var(--accent)}
+    footer.site-footer{padding:45px 0;border-top:1px solid var(--border)}
+    .footer-grid{display:flex;justify-content:space-between;gap:30px}
+    .footer-grid p{color:var(--muted);font-size:13px;margin:7px 0}
+    .footer-links{display:flex;gap:20px;color:var(--muted);font-size:13px}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.visible{opacity:1;transform:none}
+    @media (max-width:850px){
+      nav{display:none}.menu{display:block}
+      .hero{padding:52px 0 64px}.hero-grid{grid-template-columns:1fr;gap:36px}
+      .hero-photo{min-height:420px}.strip-grid{grid-template-columns:1fr 1fr}
+      .strip-item:nth-child(2){border-right:0}.strip-item:nth-child(-n+2){border-bottom:1px solid var(--border)}
+      .features{grid-template-columns:1fr}.menu-grid,.reviews{grid-template-columns:1fr}
+      section{padding:70px 0}.visit{padding:40px 30px;display:block}.visit .btn{margin-top:24px}
+    }
+    @media (max-width:560px){
+      .container{width:min(100% - 28px,1160px)}
+      .nav{height:68px}.brand{font-size:14px}
+      h1{font-size:48px}.hero p{font-size:16px}.hero-photo{min-height:360px}
+      .photo-caption{left:18px;right:18px}.strip-grid{grid-template-columns:1fr}
+      .strip-item{border-right:0!important;border-bottom:1px solid var(--border)!important}
+      .strip-item:last-child{border-bottom:0!important}
+      .section-head{display:block}.section-head p{margin-top:16px}
+      .footer-grid{display:block}.footer-links{margin-top:18px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}
+      .btn{transition:none}body{transition:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top"><span class="mark">E</span> Empire State Coffee</a>
+      <nav aria-label="Main navigation">
+        <a href="#story">About</a>
+        <a href="#menu">Menu</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Visit</a>
+      </nav>
+      <div class="actions">
+        <button class="theme" id="themeToggle" aria-label="Toggle light and dark mode">☾</button>
+        <button class="menu" id="menuToggle" aria-label="Open navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="eyebrow">Artisan Roasters · Dundee</span>
+          <h1>Good coffee.<br>Good food.<br>Good company.</h1>
+          <p>Freshly prepared food, carefully made coffee and a relaxed place to enjoy both. Discover Empire State Coffee Artisan Roasters in the heart of Dundee.</p>
+          <div class="hero-buttons">
+            <a class="btn primary" href="#menu">View the menu</a>
+            <a class="btn secondary" href="https://www.google.com/searchviewer/42?cvd=CLw_EiYKJOICITIfEhgiFtLX29IPEAoML2cvMTF4bmI2bmNtGAI6AwjwDQ%3D%3D&hl=en-IN&gl=in">Order collection</a>
+          </div>
+        </div>
+        <div class="hero-photo reveal" aria-label="Coffee shop interior">
+          <div class="photo-caption">
+            <div><strong>Made for slow mornings.</strong></div>
+            <div class="rating"><b>4.6 ★</b><br>735 reviews</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="strip">
+      <div class="container strip-grid">
+        <div class="strip-item"><strong>£1–10</strong><span>Per person</span></div>
+        <div class="strip-item"><strong>4.6 / 5</strong><span>735 reviews</span></div>
+        <div class="strip-item"><strong>28 Whitehall Cres</strong><span>Dundee DD1 4AY</span></div>
+        <div class="strip-item"><strong>Open today</strong><span>Until 4:30 pm</span></div>
+      </div>
+    </div>
+
+    <section id="story">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">The experience</span>
+            <h2>A neighbourhood coffee stop with plenty to choose from.</h2>
+          </div>
+          <p>Diners highlight the delicious coffee, pastries and wide variety of sandwiches, alongside friendly service and a relaxed atmosphere.</p>
+        </div>
+        <div class="features">
+          <article class="feature reveal">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Fresh coffee being prepared" loading="lazy">
+            <h3>Espresso</h3>
+            <p>Carefully prepared coffee for a proper start to the day, an afternoon pick-me-up or simply a moment to slow down.</p>
+          </article>
+          <article class="feature reveal">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" alt="Fresh baked bread and pastries" loading="lazy">
+            <h3>Fresh food</h3>
+            <p>From pastries to sandwiches and bagels, there is something for a quick bite or a relaxed meal.</p>
+          </article>
+          <article class="feature reveal">
+            <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=800&q=80" alt="Coffee shop table" loading="lazy">
+            <h3>Relaxed setting</h3>
+            <p>A welcoming atmosphere with attentive service — the kind of place that makes you want to stay a little longer.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Menu highlights</span>
+            <h2>Simple favourites, done well.</h2>
+          </div>
+          <p>A small selection from the menu highlights. Use the existing menu link for the complete offering.</p>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-card reveal">
+            <div class="menu-row"><div><strong>Bagel</strong><br><span>Freshly prepared</span></div><span>Menu</span></div>
+            <div class="menu-row"><div><strong>Tea</strong><br><span>A comforting classic</span></div><span>Menu</span></div>
+            <div class="menu-row"><div><strong>Espresso</strong><br><span>Freshly made coffee</span></div><span>Menu</span></div>
+          </div>
+          <div class="menu-card reveal">
+            <h3 style="font-family:Georgia,serif;font-size:29px;font-weight:500;margin-top:0">Worth coming back for</h3>
+            <p style="color:var(--muted)">Customers also mention pastries, sandwiches and a broad choice of food and drinks, including vegetarian, gluten-free and coconut-milk options.</p>
+            <a class="btn primary" href="http://empirestatecoffee.co.uk/" style="margin-top:10px">View the menu</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="container reviews">
+        <div class="reveal">
+          <span class="eyebrow">Guest reviews</span>
+          <div class="score">4.6</div>
+          <div class="stars">★★★★★</div>
+          <p style="color:var(--muted)">Based on 735 reviews</p>
+        </div>
+        <div class="review-list">
+          <blockquote class="reveal">“Fab food, lovely service — A class act :)”<footer>Google review</footer></blockquote>
+          <blockquote class="reveal">“Consistently good food, very nice coffee, excellent service and very fast.”<footer>Google review</footer></blockquote>
+          <blockquote class="reveal">“Lots of food and drink options in a nice setting.”<footer>Google review</footer></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="visit" style="padding-top:10px">
+      <div class="container">
+        <div class="visit reveal">
+          <div>
+            <h2>Drop by for coffee.</h2>
+            <p>28 Whitehall Cres, Dundee DD1 4AY, United Kingdom<br>+44 1382 200426</p>
+          </div>
+          <a class="btn" href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwiQ9qDd6aeWAxUAAAAAHQAAAAAQDg">Get directions</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>Empire State Coffee Artisan Roasters</strong>
+        <p>28 Whitehall Cres · Dundee DD1 4AY</p>
+      </div>
+      <div class="footer-links">
+        <a href="http://empirestatecoffee.co.uk/">Website</a>
+        <a href="tel:+441382200426">Call</a>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('theme');
+    if(saved) root.dataset.theme = saved;
+    const updateIcon = () => toggle.textContent = root.dataset.theme === 'dark' ? '☀' : '☾';
+    updateIcon();
+
+    toggle.addEventListener('click', () => {
+      root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', root.dataset.theme);
+      updateIcon();
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.12});
+    reveals.forEach(el => observer.observe(el));
+
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.querySelector('nav');
+    menuToggle.addEventListener('click', () => {
+      const open = nav.style.display === 'flex';
+      nav.style.display = open ? '' : 'flex';
+      nav.style.position = 'absolute';
+      nav.style.top = '68px';
+      nav.style.left = '14px';
+      nav.style.right = '14px';
+      nav.style.padding = '16px';
+      nav.style.background = 'var(--surface)';
+      nav.style.border = '1px solid var(--border)';
+      nav.style.borderRadius = '12px';
+      nav.style.flexDirection = 'column';
+      nav.style.gap = '14px';
+    });
+  </script>
+</body>
+</html>
