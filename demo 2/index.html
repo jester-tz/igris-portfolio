@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Spice Petals — Fine Dine Restro & Banquet in Vesu, Surat. 4.5★ rated fine dining, spacious banquet halls, reservations at 096620 20001."
+    />
+    <title>Spice Petals — Fine Dine Restro & Banquet | Vesu, Surat</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- ══════════════════════════════════════════════════════════
+         NAVIGATION
+    ═══════════════════════════════════════════════════════════ -->
+    <header class="site-nav" id="site-nav">
+      <div class="container nav-inner">
+        <a href="#top" class="wordmark">
+          Spice Petals<span class="wordmark-dot" aria-hidden="true"></span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main">
+          <a href="#overview">Overview</a>
+          <a href="#menu">Menu</a>
+          <a href="#banquet">Banquet</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Reserve</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="tel:+919662020001" class="btn btn-dark nav-reserve">Reserve</a>
+          <button
+            type="button"
+            class="nav-toggle"
+            id="nav-toggle"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <span class="toggle-line"></span>
+            <span class="toggle-line"></span>
+            <span class="toggle-line"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
+        <a href="#overview">Overview</a>
+        <a href="#menu">Menu</a>
+        <a href="#banquet">Banquet</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Reserve</a>
+        <a href="tel:+919662020001" class="btn btn-dark mobile-reserve">
+          Reserve · 096620 20001
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ══════════════════════════════════════════════════════════
+           01 · HERO
+      ═══════════════════════════════════════════════════════════ -->
+      <section class="hero" id="top">
+        <div class="container hero-grid">
+          <!-- Copy -->
+          <div class="hero-copy">
+            <p class="micro-label reveal">
+              <span class="micro-dot" aria-hidden="true"></span>
+              Fine Dine Restro &amp; Banquet · Vesu, Surat
+            </p>
+
+            <h1 class="hero-title reveal" style="transition-delay: 0.08s">
+              Spice<br /><em>Petals</em>
+            </h1>
+
+            <p class="hero-sub reveal" style="transition-delay: 0.16s">
+              A fine-dining room and banquet in the heart of Vesu — unhurried
+              meals by day, spacious celebrations by night.
+            </p>
+
+            <!-- Rating + price -->
+            <div class="hero-meta reveal" style="transition-delay: 0.24s">
+              <span class="stars" role="img" aria-label="Rated 4.5 out of 5">
+                <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                <span class="star-half">
+                  <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                </span>
+              </span>
+              <strong>4.5</strong>
+              <span class="hero-meta-muted">· 1,124 reviews</span>
+              <span class="meta-divider" aria-hidden="true"></span>
+              <span class="hero-meta-muted">₹400–600 per person</span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="hero-actions reveal" style="transition-delay: 0.32s">
+              <a href="tel:+919662020001" class="btn btn-dark">Reserve a table</a>
+              <a href="#menu" class="btn btn-outline">View the menu</a>
+              <a
+                href="https://www.google.com/maps/search/?api=1&amp;query=Spice+Petals+Fine+Dine+Restro+%26+Banquet%2C+Western+Vesu+Point%2C+Vesu%2C+Surat%2C+Gujarat+395007"
+                target="_blank"
+                rel="noreferrer"
+                class="btn btn-ghost"
+                >Directions →</a
+              >
+            </div>
+
+            <!-- Status -->
+            <p class="hero-status reveal" style="transition-delay: 0.4s">
+              <span class="status-dot" aria-hidden="true"></span>
+              Opens daily at 11:30 am
+              <span class="status-sep" aria-hidden="true"></span>
+              Reservations required
+            </p>
+          </div>
+
+          <!-- Image -->
+          <figure class="hero-figure reveal" style="transition-delay: 0.2s">
+            <img
+              src="assets/images/hero-dining-room.jpg"
+              alt="The dining room at Spice Petals"
+            />
+            <figcaption>The dining room</figcaption>
+          </figure>
+        </div>
+
+        <!-- Bottom line of hero -->
+        <div class="container hero-foot">
+          <p class="micro-label">Fine dining · Banquets · Surat</p>
+          <a href="#overview" class="scroll-link">Scroll ↓</a>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════
+           TICKER STRIP (edit the words in TICKER ITEMS below)
+      ═══════════════════════════════════════════════════════════ -->
+      <section class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <div class="ticker-row">
+            <span>Reservations required</span><i class="ticker-dot"></i>
+            <span>All you can eat</span><i class="ticker-dot"></i>
+            <span>Happy-hour food</span><i class="ticker-dot"></i>
+            <span>Jain options available</span><i class="ticker-dot"></i>
+            <span>Family &amp; banquet friendly</span><i class="ticker-dot"></i>
+            <span>Opens daily at 11:30 am</span><i class="ticker-dot"></i>
+          </div>
+          <!-- Second copy keeps the loop seamless -->
+          <div class="ticker-row">
+            <span>Reservations required</span><i class="ticker-dot"></i>
+            <span>All you can eat</span><i class="ticker-dot"></i>
+            <span>Happy-hour food</span><i class="ticker-dot"></i>
+            <span>Jain options available</span><i class="ticker-dot"></i>
+            <span>Family &amp; banquet friendly</span><i class="ticker-dot"></i>
+            <span>Opens daily at 11:30 am</span><i class="ticker-dot"></i>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════
+           02 · OVERVIEW
+      ═══════════════════════════════════════════════════════════ -->
+      <section class="section" id="overview">
+        <div class="container overview-grid">
+          <div class="overview-head reveal">
+            <div class="section-head">
+              <p class="micro-label">01 — Overview</p>
+              <h2>An address for unhurried meals</h2>
+              <p class="section-desc">
+                Spice Petals is a fine-dine restaurant and banquet at Western
+                Vesu Point — where familiar favourites meet house specialities,
+                and the dining room stays calm, elegant, and generous.
+              </p>
+            </div>
+          </div>
+
+          <div class="overview-body">
+            <dl class="facts reveal">
+              <div class="fact">
+                <dt>Rating</dt>
+                <dd>4.5 · 1,124 reviews</dd>
+              </div>
+              <div class="fact">
+                <dt>Price</dt>
+                <dd>₹400–600 per person · reported by 381 diners</dd>
+              </div>
+              <div class="fact">
+                <dt>Cuisine</dt>
+                <dd>Fine dining · Veg &amp; Jain friendly</dd>
+              </div>
+              <div class="fact">
+                <dt>Hours</dt>
+                <dd>Opens daily at 11:30 am</dd>
+              </div>
+              <div class="fact">
+                <dt>Reservations</dt>
+                <dd>Required — call to book</dd>
+              </div>
+              <div class="fact">
+                <dt>Banquets</dt>
+                <dd>Spacious halls for every occasion</dd>
+              </div>
+            </dl>
+
+            <div class="overview-address reveal" style="transition-delay: 0.1s">
+              <p>
+                102/103/104 Western Vesu Point, opp. Vijyalaxmi Hall, Vesu,
+                Surat, Gujarat 395007
+              </p>
+              <a
+                href="https://www.google.com/maps/search/?api=1&amp;query=Spice+Petals+Fine+Dine+Restro+%26+Banquet%2C+Western+Vesu+Point%2C+Vesu%2C+Surat%2C+Gujarat+395007"
+                target="_blank"
+                rel="noreferrer"
+                >Open in Google Maps →</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════
+           03 · MENU HIGHLIGHTS
+      ═══════════════════════════════════════════════════════════ -->
+      <section class="section" id="menu">
+        <div class="container">
+          <div class="menu-head reveal">
+            <div class="section-head">
+              <p class="micro-label">02 — Menu highlights</p>
+              <h2>What diners order most</h2>
+              <p class="section-desc">
+                The plates that keep 1,124 reviewers coming back — from crisp
+                tostadas to a brownie that arrives still sizzling.
+              </p>
+            </div>
+            <p class="menu-note">
+              Highlights reported on Google · Full menu served in-restaurant ·
+              ₹400–600 per person
+            </p>
+          </div>
+
+          <div class="dishes">
+            <figure class="dish reveal">
+              <div class="dish-img">
+                <img src="assets/images/dish-tostada.jpg" alt="Mexican Tostada" loading="lazy" />
+              </div>
+              <figcaption>
+                <h3>Mexican Tostada <span class="tag">Popular</span></h3>
+                <p>A crisp tostada piled with bright, fresh toppings — the plate our regulars order first.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="dish reveal" style="transition-delay: 0.06s">
+              <div class="dish-img">
+                <img src="assets/images/dish-paneer-lababdar.jpg" alt="Paneer Lababdar" loading="lazy" />
+              </div>
+              <figcaption>
+                <h3>Paneer Lababdar</h3>
+                <p>Silky tomato–cashew gravy folded around soft paneer — a slow-simmered classic.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="dish reveal" style="transition-delay: 0.12s">
+              <div class="dish-img">
+                <img src="assets/images/dish-green-pepper-paneer.jpg" alt="Green Pepper Paneer" loading="lazy" />
+              </div>
+              <figcaption>
+                <h3>Green Pepper Paneer</h3>
+                <p>Charred peppers and paneer in a light, spiced toss with a gentle heat.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="dish reveal" style="transition-delay: 0.18s">
+              <div class="dish-img">
+                <img src="assets/images/dish-bruschetta.jpg" alt="Bruschetta" loading="lazy" />
+              </div>
+              <figcaption>
+                <h3>Bruschetta</h3>
+                <p>Grilled bread, ripe tomatoes, basil and olive oil — simple and exactly right.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="dish reveal">
+              <div class="dish-img">
+                <img src="assets/images/dish-pizza.jpg" alt="Wood-fired Pizza" loading="lazy" />
+              </div>
+              <figcaption>
+                <h3>Wood-fired Pizza</h3>
+                <p>Thin-crust pizzas pulled from the oven with a blistered, smoky edge.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="dish reveal" style="transition-delay: 0.06s">
+              <div class="dish-img">
+                <img src="assets/images/dish-noodles.jpg" alt="Wok-tossed Noodles" loading="lazy" />
+              </div>
+              <figcaption>
+                <h3>Wok-tossed Noodles</h3>
+                <p>Steaming bowls of noodles, tossed with vegetables and house sauces.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="dish reveal" style="transition-delay: 0.12s">
+              <div class="dish-img">
+                <img src="assets/images/dish-mocktails.jpg" alt="Mocktails" loading="lazy" />
+              </div>
+              <figcaption>
+                <h3>Mocktails</h3>
+                <p>Coolers and zero-proof classics — the soft-start to any evening.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="dish reveal" style="transition-delay: 0.18s">
+              <div class="dish-img">
+                <img src="assets/images/dish-brownie.jpg" alt="Sizzling Brownie" loading="lazy" />
+              </div>
+              <figcaption>
+                <h3>Sizzling Brownie</h3>
+                <p>Warm chocolate brownie served on a hot plate with a scoop of ice cream.</p>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="menu-foot reveal">
+            <p>Menus change with the season — ask your server what the kitchen is proud of today.</p>
+            <a href="tel:+919662020001" class="btn btn-outline">Reserve a table to taste it</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════
+           04 · BANQUET (dark section)
+      ═══════════════════════════════════════════════════════════ -->
+      <section class="banquet" id="banquet">
+        <div class="container banquet-grid">
+          <figure class="banquet-img reveal">
+            <img
+              src="assets/images/banquet-hall.jpg"
+              alt="Banquet tables set for a celebration at Spice Petals"
+              loading="lazy"
+            />
+          </figure>
+
+          <div class="banquet-copy">
+            <div class="reveal">
+              <p class="micro-label micro-label-light">03 — Banquets</p>
+              <h2>
+                Rooms made<br /><em>for celebration</em>
+              </h2>
+              <p class="banquet-desc">
+                Above the dining room sit spacious banquet halls — set for
+                family dinners, weddings, and corporate evenings, on the first
+                floor of Western Vesu Point opposite Vijyalaxmi Hall.
+              </p>
+            </div>
+
+            <ul class="occasions reveal" style="transition-delay: 0.1s">
+              <li>Family gatherings</li>
+              <li>Weddings</li>
+              <li>Receptions</li>
+              <li>Corporate evenings</li>
+            </ul>
+
+            <div class="banquet-cta reveal" style="transition-delay: 0.18s">
+              <a href="tel:+919662020001" class="btn btn-light">Enquire · 096620 20001</a>
+              <p>Reservations required — call to plan your evening</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════
+           05 · REVIEWS
+      ═══════════════════════════════════════════════════════════ -->
+      <section class="section" id="reviews">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="micro-label">04 — Reviews</p>
+            <h2>Rated 4.5 by the people of Surat</h2>
+            <p class="section-desc">
+              A little under two years of dinners, birthdays and banquets —
+              summed up by 1,124 Google reviews.
+            </p>
+          </div>
+
+          <div class="reviews-grid">
+            <!-- Rating summary -->
+            <div class="rating-summary reveal">
+              <div class="rating-number">
+                <strong>4.5</strong>
+                <div>
+                  <span class="stars" role="img" aria-label="Rated 4.5 out of 5">
+                    <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                    <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                    <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                    <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                    <span class="star-half">
+                      <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                    </span>
+                  </span>
+                  <p>1,124 Google reviews</p>
+                </div>
+              </div>
+
+              <div class="bars">
+                <div class="bar"><span>5</span><i><b style="width: 68%"></b></i></div>
+                <div class="bar"><span>4</span><i><b style="width: 21%"></b></i></div>
+                <div class="bar"><span>3</span><i><b style="width: 7%"></b></i></div>
+                <div class="bar"><span>2</span><i><b style="width: 3%"></b></i></div>
+                <div class="bar"><span>1</span><i><b style="width: 1%"></b></i></div>
+              </div>
+
+              <p class="rating-note">
+                Rating and review count as shown on Google Maps · Reported by
+                381 diners on price.
+              </p>
+            </div>
+
+            <!-- Quotes -->
+            <div class="quotes">
+              <div class="quotes-list reveal">
+                <blockquote>
+                  <span class="quote-mark" aria-hidden="true">“</span>
+                  <p>
+                    Best place for family and hangout — nice ambience, good
+                    quality food.
+                  </p>
+                  <footer>Verified Google review</footer>
+                </blockquote>
+                <blockquote>
+                  <span class="quote-mark" aria-hidden="true">“</span>
+                  <p>
+                    Best service, amazing and polite staff, delicious food,
+                    beautiful interior!
+                  </p>
+                  <footer>Verified Google review</footer>
+                </blockquote>
+                <blockquote>
+                  <span class="quote-mark" aria-hidden="true">“</span>
+                  <p>
+                    We ordered soup, mock-tail, noodles, pizza and 3 types of
+                    starters.
+                  </p>
+                  <footer>Verified Google review</footer>
+                </blockquote>
+              </div>
+
+              <div class="review-summary reveal" style="transition-delay: 0.1s">
+                <p class="micro-label">What diners say</p>
+                <p>
+                  Diners love the delicious, well-varied food — including Jain
+                  options — the calm and elegant ambiance, the spacious banquet
+                  areas, and the polite, friendly, attentive service.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════
+           06 · GALLERY (click a photo to enlarge)
+      ═══════════════════════════════════════════════════════════ -->
+      <section class="section" id="gallery">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="micro-label">05 — Photos</p>
+            <h2>In frames</h2>
+            <p class="section-desc">
+              Plates, rooms and celebrations — a quiet look around before you
+              visit. Tap any frame to enlarge it.
+            </p>
+          </div>
+
+          <div class="gallery-grid">
+            <button
+              type="button"
+              class="gallery-item wide reveal"
+              data-caption="Salads & starters"
+              data-src="assets/images/gallery-salads.jpg"
+              aria-label="Open photo: Salads and starters"
+            >
+              <img src="assets/images/gallery-salads.jpg" alt="Salads and starters" loading="lazy" />
+              <span class="gallery-caption">Salads &amp; starters</span>
+            </button>
+
+            <button
+              type="button"
+              class="gallery-item reveal"
+              style="transition-delay: 0.05s"
+              data-caption="Plated fine dining"
+              data-src="assets/images/gallery-fine-dining.jpg"
+              aria-label="Open photo: Plated fine dining"
+            >
+              <img src="assets/images/gallery-fine-dining.jpg" alt="Plated fine dining" loading="lazy" />
+              <span class="gallery-caption">Plated fine dining</span>
+            </button>
+
+            <button
+              type="button"
+              class="gallery-item reveal"
+              style="transition-delay: 0.1s"
+              data-caption="Sweet endings"
+              data-src="assets/images/gallery-sweet-endings.jpg"
+              aria-label="Open photo: Sweet endings"
+            >
+              <img src="assets/images/gallery-sweet-endings.jpg" alt="Sweet endings" loading="lazy" />
+              <span class="gallery-caption">Sweet endings</span>
+            </button>
+
+            <button
+              type="button"
+              class="gallery-item reveal"
+              style="transition-delay: 0.15s"
+              data-caption="House bowls"
+              data-src="assets/images/gallery-house-bowls.jpg"
+              aria-label="Open photo: House bowls"
+            >
+              <img src="assets/images/gallery-house-bowls.jpg" alt="House bowls" loading="lazy" />
+              <span class="gallery-caption">House bowls</span>
+            </button>
+
+            <button
+              type="button"
+              class="gallery-item reveal"
+              data-caption="Celebrations"
+              data-src="assets/images/gallery-celebrations.jpg"
+              aria-label="Open photo: Celebrations"
+            >
+              <img src="assets/images/gallery-celebrations.jpg" alt="Celebrations" loading="lazy" />
+              <span class="gallery-caption">Celebrations</span>
+            </button>
+
+            <button
+              type="button"
+              class="gallery-item wide reveal"
+              style="transition-delay: 0.05s"
+              data-caption="Dessert of the house"
+              data-src="assets/images/gallery-dessert.jpg"
+              aria-label="Open photo: Dessert of the house"
+            >
+              <img src="assets/images/gallery-dessert.jpg" alt="Dessert of the house" loading="lazy" />
+              <span class="gallery-caption">Dessert of the house</span>
+            </button>
+
+            <button
+              type="button"
+              class="gallery-item reveal"
+              data-caption="Rice & gravies"
+              data-src="assets/images/gallery-rice-gravies.jpg"
+              aria-label="Open photo: Rice and gravies"
+            >
+              <img src="assets/images/gallery-rice-gravies.jpg" alt="Rice and gravies" loading="lazy" />
+              <span class="gallery-caption">Rice &amp; gravies</span>
+            </button>
+
+            <button
+              type="button"
+              class="gallery-item reveal"
+              style="transition-delay: 0.05s"
+              data-caption="The banquet floor"
+              data-src="assets/images/banquet-hall.jpg"
+              aria-label="Open photo: The banquet floor"
+            >
+              <img src="assets/images/banquet-hall.jpg" alt="The banquet floor" loading="lazy" />
+              <span class="gallery-caption">The banquet floor</span>
+            </button>
+
+            <button
+              type="button"
+              class="gallery-item reveal"
+              data-caption="Weekend plates"
+              data-src="assets/images/gallery-weekend-plates.jpg"
+              aria-label="Open photo: Weekend plates"
+            >
+              <img src="assets/images/gallery-weekend-plates.jpg" alt="Weekend plates" loading="lazy" />
+              <span class="gallery-caption">Weekend plates</span>
+            </button>
+
+            <button
+              type="button"
+              class="gallery-item reveal"
+              style="transition-delay: 0.05s"
+              data-caption="Small plates"
+              data-src="assets/images/dish-bruschetta.jpg"
+              aria-label="Open photo: Small plates"
+            >
+              <img src="assets/images/dish-bruschetta.jpg" alt="Small plates" loading="lazy" />
+              <span class="gallery-caption">Small plates</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════
+           07 · RESERVE / CONTACT
+      ═══════════════════════════════════════════════════════════ -->
+      <section class="section" id="contact">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="micro-label">06 — Reserve</p>
+            <h2>Your table is waiting</h2>
+            <p class="section-desc">
+              Reservations are required — call ahead and we'll have the table
+              set, the kitchen ready.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="reveal">
+              <dl class="info-rows">
+                <div class="info-row">
+                  <dt>Address</dt>
+                  <dd>
+                    102/103/104 Western Vesu Point, opp. Vijyalaxmi Hall, Vesu,
+                    Surat, Gujarat 395007
+                  </dd>
+                </div>
+                <div class="info-row">
+                  <dt>Phone</dt>
+                  <dd><a href="tel:+919662020001">096620 20001</a></dd>
+                </div>
+                <div class="info-row">
+                  <dt>Hours</dt>
+                  <dd>Opens daily at 11:30 am</dd>
+                </div>
+                <div class="info-row">
+                  <dt>Notes</dt>
+                  <dd class="note-chips">
+                    <span>Reservations required</span>
+                    <span>All you can eat</span>
+                    <span>Happy-hour food</span>
+                  </dd>
+                </div>
+              </dl>
+
+              <div class="contact-actions">
+                <a href="tel:+919662020001" class="btn btn-dark">Reserve a table</a>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&amp;query=Spice+Petals+Fine+Dine+Restro+%26+Banquet%2C+Western+Vesu+Point%2C+Vesu%2C+Surat%2C+Gujarat+395007"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="btn btn-outline"
+                  >Directions</a
+                >
+              </div>
+
+              <p class="map-note">
+                Opposite Vijyalaxmi Hall, first floor of Western Vesu Point —
+                easy to find, hard to leave.
+              </p>
+            </div>
+
+            <!-- Map (grayscale until you hover) -->
+            <div class="map-frame reveal" style="transition-delay: 0.1s">
+              <iframe
+                title="Map to Spice Petals, Western Vesu Point, Surat"
+                src="https://www.google.com/maps?q=Spice+Petals+Fine+Dine+Restro+%26+Banquet%2C+Western+Vesu+Point%2C+Vesu%2C+Surat&z=16&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ══════════════════════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════════════════════ -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a href="#top" class="wordmark">
+            Spice Petals<span class="wordmark-dot" aria-hidden="true"></span>
+          </a>
+          <p class="footer-tag">
+            Fine Dine Restro &amp; Banquet — Western Vesu Point, Vesu, Surat.
+          </p>
+        </div>
+
+        <nav class="footer-col" aria-label="Explore">
+          <p class="footer-heading">Explore</p>
+          <a href="#overview">Overview</a>
+          <a href="#menu">Menu</a>
+          <a href="#banquet">Banquet</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Reserve</a>
+          <a href="privacy.html">Privacy &amp; cookies</a>
+          <button type="button" id="cookie-settings">Cookie settings</button>
+        </nav>
+
+        <div class="footer-col">
+          <p class="footer-heading">Visit</p>
+          <p class="footer-address">
+            102/103/104 Western Vesu Point, opp. Vijyalaxmi Hall, Vesu, Surat,
+            Gujarat 395007
+          </p>
+          <a href="tel:+919662020001">096620 20001</a>
+          <p>Opens daily at 11:30 am</p>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>© <span id="year">2026</span> Spice Petals · Fine Dine Restro &amp; Banquet</p>
+        <p>4.5★ · 1,124 Google reviews · Photography via Unsplash</p>
+      </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════════════════════════
+         COOKIE & POLICIES BANNER (shows once, bottom-left)
+    ═══════════════════════════════════════════════════════════ -->
+    <aside class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie notice">
+      <p class="micro-label">Cookies &amp; policies</p>
+      <p class="cookie-text">
+        Spice Petals uses minimal cookies — just to remember your preferences.
+        No tracking, no ads. Read our
+        <a href="privacy.html">policies</a>.
+      </p>
+      <div class="cookie-actions">
+        <button type="button" class="btn btn-dark btn-sm" id="cookie-accept">Accept</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="cookie-decline">Decline</button>
+      </div>
+    </aside>
+
+    <!-- ══════════════════════════════════════════════════════════
+         PHOTO VIEWER (filled in by js/main.js)
+    ═══════════════════════════════════════════════════════════ -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+      <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close photo viewer">✕</button>
+      <button type="button" class="lightbox-prev" id="lightbox-prev" aria-label="Previous photo">‹</button>
+      <img id="lightbox-img" src="" alt="" />
+      <button type="button" class="lightbox-next" id="lightbox-next" aria-label="Next photo">›</button>
+      <div class="lightbox-meta">
+        <span id="lightbox-caption"></span>
+        <span id="lightbox-count"></span>
+      </div>
+    </div>
+
+    <!-- Mobile quick-action bar -->
+    <div class="mobile-bar">
+      <a href="tel:+919662020001" class="btn btn-outline">Call now</a>
+      <a href="#contact" class="btn btn-dark">Reserve a table</a>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
