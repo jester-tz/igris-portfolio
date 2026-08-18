@@ -1,0 +1,34 @@
+IGRIS AUTH EMAIL SETUP
+
+RESET PASSWORD
+1. Supabase Dashboard -> Authentication -> Emails -> Reset password.
+2. Subject:
+   Reset your Igris Project Account password
+3. Copy the BODY from:
+   supabase-reset-password-template.html
+4. Save.
+
+IMPORTANT FOR THE WEBSITE
+The included igris-auth.js now sends password recovery users to:
+   https://igrisfreelancer.in/update-password.html
+
+The included update-password.html securely lets the user choose the new password.
+
+SPAM / DELIVERABILITY
+Because the domain is verified in Resend, SPF/DKIM should be in place. Also check:
+- Resend Domains -> your domain -> DMARC
+- Add/verify a DMARC TXT record if Resend says it is missing.
+- In Resend, disable click tracking and open tracking for transactional/auth emails.
+- Keep authentication emails short and non-promotional.
+- Make sure the From address uses your verified domain.
+- Make sure the links in the email point to igrisfreelancer.in / your verified sending domain.
+- If using Supabase Auth, make sure Supabase Authentication -> SMTP is actually configured to use Resend SMTP.
+  Resend SMTP:
+    Host: smtp.resend.com
+    Port: 465
+    Username: resend
+    Password: your Resend API key
+- Use a consistent sender name such as:
+    Igris <your-verified-sender@igrisfreelancer.in>
+
+If Gmail still puts the message in Spam after SPF, DKIM and DMARC pass, that is usually sender/domain reputation rather than an HTML-design problem. Sending a small number of legitimate transactional emails consistently helps establish reputation.

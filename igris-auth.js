@@ -7,8 +7,43 @@ function injectStyles(){
  if(document.getElementById('igris-account-styles'))return;
  const s=document.createElement('style');s.id='igris-account-styles';s.textContent=`
 #igris-account-float{position:fixed;right:22px;bottom:22px;z-index:99990;font-family:inherit}
-#igris-account-float button{border:1px solid rgba(255,255,255,.15);background:rgba(20,16,22,.82);color:inherit;border-radius:999px;padding:11px 18px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 12px 35px rgba(0,0,0,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
-#igris-account-float button:hover{transform:translateY(-2px);border-color:rgba(225,6,47,.58);box-shadow:0 15px 42px rgba(0,0,0,.3)}
+#igris-account-float button{
+  border:1px solid #151217;
+  background:#151217;
+  color:#fff;
+  border-radius:999px;
+  padding:11px 18px;
+  font:inherit;
+  font-size:13px;
+  font-weight:650;
+  cursor:pointer;
+  box-shadow:0 12px 35px rgba(20,12,24,.16);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  transition:transform .22s ease,background .22s ease,color .22s ease,
+             border-color .22s ease,box-shadow .22s ease;
+}
+#igris-account-float button:hover,
+#igris-account-float button:focus-visible{
+  transform:translateY(-2px);
+  background:#e1062f;
+  border-color:#e1062f;
+  color:#fff;
+  box-shadow:0 15px 42px rgba(225,6,47,.18);
+}
+[data-theme="dark"] #igris-account-float button{
+  background:#e1062f;
+  border-color:#e1062f;
+  color:#fff;
+  box-shadow:0 12px 35px rgba(0,0,0,.28);
+}
+[data-theme="dark"] #igris-account-float button:hover,
+[data-theme="dark"] #igris-account-float button:focus-visible{
+  background:#151217;
+  border-color:#151217;
+  color:#fff;
+  box-shadow:0 15px 42px rgba(0,0,0,.34);
+}
 #igris-account-modal{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(5,4,7,.62);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 #igris-account-modal.open{display:flex}
 .igris-auth-card{position:relative;width:min(455px,100%);max-height:90vh;overflow:auto;padding:30px;border:1px solid rgba(255,255,255,.13);border-radius:26px;background:var(--card-bg,#17141a);color:var(--text,#171717);box-shadow:0 30px 100px rgba(0,0,0,.38)}
@@ -18,9 +53,61 @@ function injectStyles(){
 .igris-auth-field{margin:11px 0}.igris-auth-field label{display:block;font-size:10px;letter-spacing:.07em;opacity:.6;margin-bottom:6px}
 .igris-auth-field input{width:100%;box-sizing:border-box;padding:12px 13px;border-radius:11px;border:1px solid rgba(0,0,0,.13);background:rgba(255,255,255,.5);color:inherit;outline:none;font:inherit}
 [data-theme="dark"] .igris-auth-field input{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#fff}
-.igris-auth-row{display:flex;gap:9px;margin-top:12px}.igris-auth-row button{flex:1;padding:12px;border-radius:11px;border:1px solid rgba(0,0,0,.12);background:rgba(255,255,255,.35);color:inherit;font:inherit;font-size:13px;cursor:pointer}
-[data-theme="dark"] .igris-auth-row button{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12);color:#fff}
-.igris-auth-row .primary{border:0;background:linear-gradient(135deg,#e1062f,#6939e8);color:#fff}
+.igris-auth-row{display:flex;gap:9px;margin-top:12px}
+.igris-auth-row button{
+  flex:1;
+  padding:12px;
+  border-radius:11px;
+  border:1px solid rgba(0,0,0,.13);
+  background:transparent;
+  color:inherit;
+  font:inherit;
+  font-size:13px;
+  cursor:pointer;
+  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
+}
+.igris-auth-row button:not(.primary):hover,
+.igris-auth-row button:not(.primary):focus-visible{
+  border-color:#e1062f;
+  color:#e1062f;
+  background:rgba(225,6,47,.04);
+  transform:translateY(-1px);
+}
+[data-theme="dark"] .igris-auth-row button{
+  background:transparent;
+  border-color:rgba(255,255,255,.13);
+  color:#fff;
+}
+[data-theme="dark"] .igris-auth-row button:not(.primary):hover,
+[data-theme="dark"] .igris-auth-row button:not(.primary):focus-visible{
+  border-color:#e1062f;
+  color:#fff;
+  background:rgba(225,6,47,.10);
+}
+.igris-auth-row .primary{
+  border:1px solid #151217;
+  background:#151217;
+  color:#fff;
+  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
+}
+.igris-auth-row .primary:hover,
+.igris-auth-row .primary:focus-visible{
+  background:#e1062f;
+  border-color:#e1062f;
+  color:#fff;
+  transform:translateY(-1px);
+}
+[data-theme="dark"] .igris-auth-row .primary{
+  background:#e1062f;
+  border-color:#e1062f;
+  color:#fff;
+}
+[data-theme="dark"] .igris-auth-row .primary:hover,
+[data-theme="dark"] .igris-auth-row .primary:focus-visible{
+  background:#151217;
+  border-color:#151217;
+  color:#fff;
+}
 .igris-auth-link{border:0!important;background:none!important;opacity:.7;font-size:12px!important;padding:9px 3px!important}
 .igris-auth-google{width:100%;margin-top:10px;padding:12px;border-radius:11px;border:1px solid rgba(0,0,0,.12);background:transparent;color:inherit;font:inherit;cursor:pointer}
 [data-theme="dark"] .igris-auth-google{border-color:rgba(255,255,255,.13);color:#fff}
@@ -48,7 +135,26 @@ function injectStyles(){
   border-color:var(--igris-account-border,rgba(20,15,25,.12));
 }
 #igris-account-modal .igris-auth-row .primary{
-  background:linear-gradient(135deg,#e1062f,#6939e8)!important;color:#fff!important;border:0!important;
+  background:#151217!important;
+  color:#fff!important;
+  border:1px solid #151217!important;
+}
+#igris-account-modal .igris-auth-row .primary:hover,
+#igris-account-modal .igris-auth-row .primary:focus-visible{
+  background:#e1062f!important;
+  color:#fff!important;
+  border-color:#e1062f!important;
+}
+[data-theme="dark"] #igris-account-modal .igris-auth-row .primary{
+  background:#e1062f!important;
+  color:#fff!important;
+  border-color:#e1062f!important;
+}
+[data-theme="dark"] #igris-account-modal .igris-auth-row .primary:hover,
+[data-theme="dark"] #igris-account-modal .igris-auth-row .primary:focus-visible{
+  background:#151217!important;
+  color:#fff!important;
+  border-color:#151217!important;
 }
 #igris-account-modal .igris-auth-link{color:var(--igris-account-text,#16131a)!important}
 [data-theme="dark"] #igris-account-modal .igris-auth-card{
